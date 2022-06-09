@@ -13,6 +13,8 @@ import {
 
 import { Response } from 'express';
 import { CustomersService } from 'src/services/customers.service';
+import { ParseIntPipe } from 'src/common/parse-int.pipe';
+import { CreateCustomerDto, UpdateCustomerDto } from 'src/dtos/customers.dtos';
 
 @Controller('customers')
 export class CustomersController {
@@ -23,25 +25,34 @@ export class CustomersController {
     response.status(200).send(this.customersService.findAll());
   }
 
+  // @Get(':id')
+  // @HttpCode(HttpStatus.ACCEPTED)
+  // getId(@Res() response: Response, @Param('id', ParseIntPipe) id: number) {
+  //   const customer = this.customersService.findOne(id);
+  //   response.send(customer);
+  // }
   @Get(':id')
   @HttpCode(HttpStatus.ACCEPTED)
-  getId(@Res() response: Response, @Param('id') id: number) {
+  getId(@Param('id', ParseIntPipe) id: number) {
     const customer = this.customersService.findOne(id);
-    response.send(customer);
+    return customer;
   }
 
   @Post()
-  create(@Body() payload: any) {
+  create(@Body() payload: CreateCustomerDto) {
     return this.customersService.create(payload);
   }
 
   @Put(':id')
-  updateCustomer(@Param('id') id: number, @Body() payload: any) {
+  updateCustomer(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateCustomerDto,
+  ) {
     return this.customersService.update(id, payload);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.customersService.delete(id);
   }
 }

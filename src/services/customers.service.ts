@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/entities/customer.entity';
 
 @Injectable()
@@ -6,7 +6,7 @@ export class CustomersService {
   private customers: Customer[] = [
     {
       id: 1,
-      name: 'Ernan',
+      firstname: 'Ernan',
       lastname: 'Velasquez',
       address:
         'Pasaje Amapolas, Poligono I, Casa#12, Jardines del Rey, Santa Tecla',
@@ -24,7 +24,10 @@ export class CustomersService {
   }
 
   findOne(id: number) {
-    const response = this.customers.find((c) => c.id === Number(id));
+    const response = this.customers.find((c) => c.id === id);
+    if (!response) {
+      throw new NotFoundException(`Customer ${id} not found`);
+    }
     return response;
   }
 
@@ -39,7 +42,10 @@ export class CustomersService {
   }
 
   update(id: number, payload: any) {
-    const i = this.customers.findIndex((e) => e.id === Number(id));
+    const i = this.customers.findIndex((e) => e.id === id);
+    if (!i) {
+      throw new NotFoundException(`Customer ${id} not found`);
+    }
     const customer = this.customers[i];
 
     if (customer) {
@@ -53,11 +59,11 @@ export class CustomersService {
   }
 
   delete(id: number) {
-    const customer = this.findOne(Number(id));
+    const customer = this.findOne(id);
     if (!customer) {
-      throw new Error(`Id ${id} does not exist`);
+      throw new NotFoundException(`Id ${id} does not exist`);
     }
-    const customers = this.customers.filter((customer) => customer.id !== id);
-    this.customers = customers;
+    this.customers = this.customers.filter((customer) => customer.id !== id);
+    return true;
   }
 }
