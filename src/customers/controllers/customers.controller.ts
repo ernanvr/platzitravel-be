@@ -12,9 +12,12 @@ import {
 } from '@nestjs/common';
 
 import { Response } from 'express';
-import { CustomersService } from 'src/services/customers.service';
+import { CustomersService } from 'src/customers/services/customers.service';
 import { ParseIntPipe } from 'src/common/parse-int.pipe';
-import { CreateCustomerDto, UpdateCustomerDto } from 'src/dtos/customers.dtos';
+import {
+  CreateCustomerDto,
+  UpdateCustomerDto,
+} from 'src/customers/dtos/customers.dtos';
 
 @Controller('customers')
 export class CustomersController {
