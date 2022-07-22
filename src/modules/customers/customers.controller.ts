@@ -12,12 +12,12 @@ import {
 } from '@nestjs/common';
 
 import { Response } from 'express';
-import { CustomersService } from 'src/customers/services/customers.service';
+import { CustomersService } from 'src/modules/customers/customers.service';
 import { ParseIntPipe } from 'src/common/parse-int.pipe';
 import {
   CreateCustomerDto,
   UpdateCustomerDto,
-} from 'src/customers/dtos/customers.dtos';
+} from 'src/modules/customers/dtos/customers.dtos';
 
 @Controller('customers')
 export class CustomersController {
@@ -28,12 +28,6 @@ export class CustomersController {
     response.status(200).send(this.customersService.findAll());
   }
 
-  // @Get(':id')
-  // @HttpCode(HttpStatus.ACCEPTED)
-  // getId(@Res() response: Response, @Param('id', ParseIntPipe) id: number) {
-  //   const customer = this.customersService.findOne(id);
-  //   response.send(customer);
-  // }
   @Get(':id')
   @HttpCode(HttpStatus.ACCEPTED)
   getId(@Param('id', ParseIntPipe) id: number) {
