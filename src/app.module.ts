@@ -17,7 +17,7 @@ import { HotelsModule } from './modules/hotels/hotels.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 3000,
+      port: 5432,
       username: 'postgres',
       password: 'HoL4!',
       database: 'platzitravel',
@@ -32,7 +32,5 @@ import { HotelsModule } from './modules/hotels/hotels.module';
     ContractsModule,
     HotelsModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
