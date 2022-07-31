@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Country } from '../../countries/entities/countries.entity';
 import { Hotel } from 'src/modules/hotels/entities/hotels.entity';
+import { TransportCompany } from 'src/modules/transport-companies/entities/transport-companies.entity';
 
 @Entity()
 export class City {
@@ -34,4 +35,10 @@ export class City {
 
   @OneToMany(() => Hotel, (hotel) => hotel.city)
   hotels: Hotel[];
+
+  @OneToMany(
+    () => TransportCompany,
+    (transportCompany) => transportCompany.city,
+  )
+  transportCompanies: TransportCompany[];
 }

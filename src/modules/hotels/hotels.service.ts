@@ -42,4 +42,9 @@ export class HotelsService {
     this.hotelRepo.merge(hotel, payload);
     return this.hotelRepo.save(hotel);
   }
+
+  async delete(id: number) {
+    await this.hotelRepo.delete(id);
+    return true;
+  }
 }
