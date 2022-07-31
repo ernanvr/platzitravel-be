@@ -3,9 +3,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 import { Country } from '../../countries/entities/countries.entity';
+import { Hotel } from 'src/modules/hotels/entities/hotels.entity';
 
 @Entity()
 export class City {
@@ -29,4 +31,7 @@ export class City {
   @ManyToOne(() => Country, (country) => country.cities)
   @JoinColumn({ name: 'country_id' })
   country: Country;
+
+  @OneToMany(() => Hotel, (hotel) => hotel.city)
+  hotels: Hotel[];
 }
