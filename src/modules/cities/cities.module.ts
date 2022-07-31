@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { CitiesController } from './cities.controller';
 import { CitiesService } from './cities.service';
+import { CitiesController } from './cities.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { City } from './entities/cities.entity';
 
 @Module({
-  controllers: [CitiesController],
+  imports: [TypeOrmModule.forFeature([City])],
   providers: [CitiesService],
+  controllers: [CitiesController],
 })
 export class CitiesModule {}

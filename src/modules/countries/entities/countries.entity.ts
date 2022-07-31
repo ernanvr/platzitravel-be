@@ -1,5 +1,5 @@
-import { City } from 'src/modules/cities/entities/cities.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { City } from '../../cities/entities/cities.entity';
 
 @Entity()
 export class Country {
@@ -7,17 +7,20 @@ export class Country {
   id: number;
 
   @Column({
+    name: 'country_code',
     type: 'varchar',
     length: 8,
-    unique: true,
+    nullable: false,
   })
-  country_code: string;
+  countryCode: string;
 
   @Column({
+    name: 'country_name',
     type: 'varchar',
-    length: 255,
+    length: 64,
+    nullable: false,
   })
-  country_name: string;
+  countryName: string;
 
   @OneToMany(() => City, (city) => city.country)
   cities: City[];

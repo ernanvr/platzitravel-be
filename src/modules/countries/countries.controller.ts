@@ -1,14 +1,45 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { CountriesService } from './countries.service';
+import { CreateCountryDto, UpdateCountryDto } from './dtos/countries.dtos';
 
 @Controller('countries')
 export class CountriesController {
+  constructor(private countryService: CountriesService) {}
+
   @Get()
-  getAll() {
-    return {};
+  findAll() {
+    return this.countryService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return { id };
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.countryService.findOne(id);
+  }
+
+  @Post()
+  createCountry(@Body() payload: CreateCountryDto) {
+    return this.countryService.create(payload);
+  }
+
+  @Put(':id')
+  updateCountry(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateCountryDto,
+  ) {
+    return this.countryService.update(id, payload);
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.countryService.delete(id);
   }
 }
