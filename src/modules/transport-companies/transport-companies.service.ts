@@ -49,7 +49,6 @@ export class TransportCompaniesService {
 
   async delete(id: number) {
     await this.transportCompanyRepo.delete(id);
-
     return true;
   }
 }

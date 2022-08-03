@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateCityDto, UpdateCityDto } from './dtos/cities.dtos';
-import { City } from './entities/cities.entity';
+import { CreateCityDto, UpdateCityDto } from '../dtos/cities.dtos';
+import { City } from '../entities/cities.entity';
 
 @Injectable()
 export class CitiesService {

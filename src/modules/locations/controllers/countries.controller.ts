@@ -8,8 +8,8 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
-import { CountriesService } from './countries.service';
-import { CreateCountryDto, UpdateCountryDto } from './dtos/countries.dtos';
+import { CountriesService } from '../services/countries.service';
+import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dtos';
 
 @Controller('countries')
 export class CountriesController {

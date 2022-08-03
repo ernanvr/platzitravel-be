@@ -6,7 +6,7 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
-import { Country } from '../../countries/entities/countries.entity';
+import { Country } from './countries.entity';
 import { Hotel } from 'src/modules/hotels/entities/hotels.entity';
 import { TransportCompany } from 'src/modules/transport-companies/entities/transport-companies.entity';
 

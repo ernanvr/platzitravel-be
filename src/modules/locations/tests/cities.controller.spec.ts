@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CitiesController } from '../cities.controller';
+import { CitiesController } from '../controllers/cities.controller';
 
-describe('CitiesController', () => {
+describe('CountriesController', () => {
   let controller: CitiesController;
 
   beforeEach(async () => {

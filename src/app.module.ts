@@ -7,9 +7,8 @@ import { OffersModule } from './modules/offers/offers.module';
 import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 import { ContractsModule } from './modules/contracts/contracts.module';
 import { HotelsModule } from './modules/hotels/hotels.module';
-import { CountriesModule } from './modules/countries/countries.module';
-import { CitiesModule } from './modules/cities/cities.module';
 import { StationsModule } from './modules/stations/stations.module';
+import { LocationsModule } from './modules/locations/locations.module';
 
 @Module({
   imports: [
@@ -31,9 +30,8 @@ import { StationsModule } from './modules/stations/stations.module';
     PromoOffersModule,
     ContractsModule,
     HotelsModule,
-    CountriesModule,
-    CitiesModule,
     StationsModule,
+    LocationsModule,
   ],
 })
 export class AppModule {}
