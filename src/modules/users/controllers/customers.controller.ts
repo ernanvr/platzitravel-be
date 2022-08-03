@@ -13,7 +13,7 @@ import {
 
 import { Response } from 'express';
 import { CustomersService } from 'src/modules/users/services/customers.service';
-import { ParseIntPipe } from 'src/common/parse-int.pipe';
+import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import {
   CreateCustomerDto,
   UpdateCustomerDto,
