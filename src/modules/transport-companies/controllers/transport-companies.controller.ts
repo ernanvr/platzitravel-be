@@ -8,8 +8,8 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { CreateTransportCompany } from './dtos/transport-companies.dtos';
-import { TransportCompaniesService } from './transport-companies.service';
+import { CreateTransportCompany } from '../dtos/transport-companies.dtos';
+import { TransportCompaniesService } from '../services/transport-companies.service';
 
 @Controller('transport-companies')
 export class TransportCompaniesController {

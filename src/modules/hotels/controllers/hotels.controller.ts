@@ -7,8 +7,8 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { CreateHotelDto, UpdateHotelDto } from './dtos/hotels.dtos';
-import { HotelsService } from './hotels.service';
+import { CreateHotelDto, UpdateHotelDto } from '../dtos/hotels.dtos';
+import { HotelsService } from '../services/hotels.service';
 
 @Controller('hotels')
 export class HotelsController {

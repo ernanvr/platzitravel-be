@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import {
   CreateTransportCompany,
   UpdateTransportCompany,
-} from './dtos/transport-companies.dtos';
-import { TransportCompany } from './entities/transport-companies.entity';
+} from '../dtos/transport-companies.dtos';
+import { TransportCompany } from '../entities/transport-companies.entity';
 
 @Injectable()
 export class TransportCompaniesService {
