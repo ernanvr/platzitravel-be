@@ -1,4 +1,4 @@
-import { City } from 'src/modules/cities/entities/cities.entity';
+import { City } from 'src/modules/locations/entities/cities.entity';
 import {
   Entity,
   Column,

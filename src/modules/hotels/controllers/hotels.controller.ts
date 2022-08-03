@@ -6,6 +6,7 @@ import {
   Post,
   Put,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CreateHotelDto, UpdateHotelDto } from '../dtos/hotels.dtos';
 import { HotelsService } from '../services/hotels.service';
@@ -19,7 +20,7 @@ export class HotelsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
     return { id };
   }
 
@@ -29,12 +30,15 @@ export class HotelsController {
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() payload: UpdateHotelDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateHotelDto,
+  ) {
     this.hotelService.update(id, payload);
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id', ParseIntPipe) id: number) {
     return this.hotelService.delete(id);
   }
 }

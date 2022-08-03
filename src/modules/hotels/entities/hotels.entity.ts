@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
 } from 'typeorm';
-import { City } from 'src/modules/cities/entities/cities.entity';
+import { City } from 'src/modules/locations/entities/cities.entity';
 
 @Entity()
 export class Hotel {

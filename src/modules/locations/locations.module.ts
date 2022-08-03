@@ -6,10 +6,12 @@ import { City } from './entities/cities.entity';
 import { CountriesController } from './controllers/countries.controller';
 import { CountriesService } from './services/countries.service';
 import { Country } from './entities/countries.entity';
+import { StationsService } from './services/stations.service';
+import { StationsController } from './controllers/stations.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([City, Country])],
-  providers: [CitiesService, CountriesController],
-  controllers: [CitiesController, CountriesService],
+  providers: [CitiesService, CountriesService, StationsService],
+  controllers: [CitiesController, CountriesController, StationsController],
 })
 export class LocationsModule {}
