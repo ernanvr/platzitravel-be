@@ -1,19 +1,14 @@
 import { Module } from '@nestjs/common';
-import { CustomersModule } from './modules/customers/customers.module';
-import { AgentsModule } from './modules/agents/agents.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransportCompaniesModule } from './modules/transport-companies/transport-companies.module';
 import { OffersModule } from './modules/offers/offers.module';
-import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 import { ContractsModule } from './modules/contracts/contracts.module';
 import { HotelsModule } from './modules/hotels/hotels.module';
-import { StationsModule } from './modules/stations/stations.module';
 import { LocationsModule } from './modules/locations/locations.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
-    CustomersModule,
-    AgentsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -27,11 +22,10 @@ import { LocationsModule } from './modules/locations/locations.module';
     }),
     TransportCompaniesModule,
     OffersModule,
-    PromoOffersModule,
     ContractsModule,
     HotelsModule,
-    StationsModule,
     LocationsModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
