@@ -1,13 +1,17 @@
+import { Agent } from 'src/modules/users/entities/agents.entity';
+import { Customer } from 'src/modules/users/entities/customer.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
-export class Contracts {
+export class Contract {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -108,4 +112,12 @@ export class Contracts {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @ManyToOne(() => Agent, (agent) => agent.contracts)
+  @JoinColumn({ name: 'agent_id' })
+  agent: Agent;
+
+  @ManyToOne(() => Customer, (customer) => customer.contracts)
+  @JoinColumn({ name: 'customer_id' })
+  customer: Customer;
 }

@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Contract } from 'src/modules/contracts/entities/contracts.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
 export class Customer {
@@ -28,4 +36,18 @@ export class Customer {
 
   @Column()
   customer_from: string;
+
+  ///////////////////////////////
+  @CreateDateColumn({
+    name: 'created_at',
+  })
+  createdAt: Date;
+
+  @UpdateDateColumn({
+    name: 'updated_at',
+  })
+  updatedAt: Date;
+
+  @OneToMany(() => Contract, (contract) => contract.customer)
+  contracts: Contract[];
 }
