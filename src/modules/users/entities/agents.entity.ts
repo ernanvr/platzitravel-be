@@ -35,6 +35,7 @@ export class Agent {
 
   @Column({
     type: 'boolean',
+    default: true,
   })
   active: boolean;
 
