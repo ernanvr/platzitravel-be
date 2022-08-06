@@ -39,7 +39,7 @@ export class CreateContractDto {
   readonly paymentDate?: Date;
 
   @IsBoolean()
-  readonly paid: boolean;
+  readonly paid?: boolean; //default: false
 
   @IsDate()
   readonly paymentTime?: Date;
@@ -48,7 +48,7 @@ export class CreateContractDto {
   readonly paymentAmount?: number;
 
   @IsBoolean()
-  readonly refunded: boolean;
+  readonly refunded?: boolean; //default: false
 
   @IsDate()
   readonly refundedTime?: Date;
