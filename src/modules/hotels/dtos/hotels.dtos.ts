@@ -4,6 +4,7 @@ import {
   IsNumber,
   IsBoolean,
   MaxLength,
+  IsArray,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
@@ -33,8 +34,11 @@ export class CreateHotelDto {
   @IsBoolean()
   readonly active?: boolean; //default: true
 
-  @IsString()
-  readonly picturesUrl: string[];
+  @IsArray()
+  @IsString({
+    each: true,
+  })
+  readonly picturesUrl?: string[];
 }
 
 export class UpdateHotelDto extends PartialType(CreateHotelDto) {}
