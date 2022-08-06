@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { CreateCityDto, UpdateCityDto } from '../dtos/cities.dtos';
 import { City } from '../entities/cities.entity';
 
@@ -8,12 +8,12 @@ import { City } from '../entities/cities.entity';
 export class CitiesService {
   constructor(@InjectRepository(City) private cityRepo: Repository<City>) {}
 
-  findAll() {
+  findAll(): Promise<City[]> {
     return this.cityRepo.find();
   }
 
-  findOne(id: number) {
-    const city = this.cityRepo.findOne({
+  async findOne(id: number): Promise<City> {
+    const city = await this.cityRepo.findOne({
       where: {
         id: id,
       },
@@ -31,23 +31,14 @@ export class CitiesService {
     return this.cityRepo.save(newCity);
   }
 
-  async update(id: number, body: UpdateCityDto) {
-    const city = await this.cityRepo.findOne({
-      where: {
-        id: id,
-      },
-    });
-
-    if (!city) {
-      throw new NotFoundException(`City ${id} was not found`);
-    }
+  async update(id: number, body: UpdateCityDto): Promise<City> {
+    const city = await this.findOne(id);
     this.cityRepo.merge(city, body);
     return this.cityRepo.save(city);
   }
 
-  async delete(id: number) {
-    await this.cityRepo.delete(id);
-
-    return true;
+  async delete(id: number): Promise<DeleteResult> {
+    await this.findOne(id);
+    return this.cityRepo.delete(id);
   }
 }
