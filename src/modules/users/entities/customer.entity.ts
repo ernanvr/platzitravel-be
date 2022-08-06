@@ -44,7 +44,10 @@ export class Customer {
   })
   mobile: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 254,
+  })
   email: string;
 
   @Column({
