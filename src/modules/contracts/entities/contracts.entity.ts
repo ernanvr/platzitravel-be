@@ -40,6 +40,7 @@ export class Contract {
   @Column({
     name: 'time_signed',
     type: 'timestamp',
+    nullable: true,
   })
   timeSigned: Date;
 
@@ -55,6 +56,7 @@ export class Contract {
   @Column({
     name: 'payment_date',
     type: 'date',
+    nullable: true,
   })
   paymentDate: Date;
 
