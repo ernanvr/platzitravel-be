@@ -6,8 +6,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { City } from 'src/modules/locations/entities/cities.entity';
+import { HotelProduct } from './hotel-products.entity';
 
 @Entity()
 export class Hotel {
@@ -73,4 +75,7 @@ export class Hotel {
   @ManyToOne(() => City, (city) => city.hotels)
   @JoinColumn({ name: 'city_id' })
   city: City;
+
+  @OneToMany(() => HotelProduct, (hotelProduct) => hotelProduct.hotel)
+  hotelProducts: HotelProduct[];
 }
