@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/modules/users/entities/customer.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateCustomerDto } from '../dtos/customers.dtos';
+import { DeleteResult, Repository } from 'typeorm';
+import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customers.dtos';
 
 @Injectable()
 export class CustomersService {
@@ -10,7 +10,7 @@ export class CustomersService {
     @InjectRepository(Customer) private customerRepo: Repository<Customer>,
   ) {}
 
-  findAll() {
+  findAll(): Promise<Customer[]> {
     return this.customerRepo.find();
   }
 
@@ -24,20 +24,19 @@ export class CustomersService {
     return response;
   }
 
-  create(payload: CreateCustomerDto) {
+  create(payload: CreateCustomerDto): Promise<Customer> {
     const newCustomer = this.customerRepo.create(payload);
     return this.customerRepo.save(newCustomer);
   }
 
-  async update(id: number, payload: any) {
+  async update(id: number, payload: UpdateCustomerDto): Promise<Customer> {
     const response = await this.findOne(id);
     this.customerRepo.merge(response, payload);
     return this.customerRepo.save(response);
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    await this.customerRepo.delete(id);
-    return true;
+    return this.customerRepo.delete(id);
   }
 }
