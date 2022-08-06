@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DeleteResult } from 'typeorm';
 import { Contract } from '../entities/contracts.entity';
 import { CreateContractDto, UpdateContractDto } from '../dtos/contracts.dto';
 
@@ -10,11 +10,11 @@ export class ContractsService {
     @InjectRepository(Contract) private contractRepo: Repository<Contract>,
   ) {}
 
-  findAll() {
+  findAll(): Promise<Contract[]> {
     return this.contractRepo.find();
   }
 
-  findOne(id: number) {
+  findOne(id: number): Promise<Contract> {
     const contract = this.contractRepo.findOne({
       where: { id },
     });
@@ -26,31 +26,19 @@ export class ContractsService {
     return contract;
   }
 
-  create(payload: CreateContractDto) {
+  create(payload: CreateContractDto): Promise<Contract> {
     const newContract = this.contractRepo.create(payload);
     return this.contractRepo.save(newContract);
   }
 
-  async update(id: number, payload: UpdateContractDto) {
-    const contract = await this.contractRepo.findOne({
-      where: { id },
-    });
-    if (!contract) {
-      throw new NotFoundException(`Record ${id} wasn't found`);
-    }
+  async update(id: number, payload: UpdateContractDto): Promise<Contract> {
+    const contract = await this.findOne(id);
     this.contractRepo.merge(contract, payload);
-
     return this.contractRepo.save(contract);
   }
 
-  async delete(id: number) {
-    const contract = await this.contractRepo.findOne({
-      where: { id },
-    });
-    if (!contract) {
-      throw new NotFoundException(`Record ${id} wasn't found`);
-    }
-    this.contractRepo.delete(id);
-    return true;
+  async delete(id: number): Promise<DeleteResult> {
+    await this.findOne(id);
+    return this.contractRepo.delete(id);
   }
 }
