@@ -13,29 +13,45 @@ export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 64,
+  })
   firstname: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 64,
+  })
   lastname: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
   address: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 32,
+    nullable: true,
+  })
   phone: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 32,
+  })
   mobile: string;
 
   @Column()
   email: string;
 
-  @Column()
+  @Column({
+    name: 'text',
+    nullable: true,
+  })
   details: string;
-
-  @Column()
-  customer_from: string;
 
   ///////////////////////////////
   @CreateDateColumn({
