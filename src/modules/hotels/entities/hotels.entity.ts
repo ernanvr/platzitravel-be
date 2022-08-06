@@ -18,13 +18,11 @@ export class Hotel {
     name: 'hotel_name',
     type: 'varchar',
     length: 255,
-    nullable: false,
   })
   hotelName: string;
 
   @Column({
     name: 'city_id',
-    nullable: false,
   })
   cityId: number;
 
@@ -32,7 +30,6 @@ export class Hotel {
     name: 'hotel_address',
     type: 'varchar',
     length: 255,
-    nullable: false,
   })
   hotelAddress: string;
 
@@ -45,13 +42,11 @@ export class Hotel {
   @Column({
     name: 'is_partner',
     type: 'boolean',
-    nullable: false,
   })
   isPartner: boolean;
 
   @Column({
     type: 'boolean',
-    nullable: false,
   })
   active: boolean;
 
