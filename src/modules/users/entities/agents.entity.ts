@@ -33,6 +33,11 @@ export class Agent {
   })
   lastname: string;
 
+  @Column({
+    type: 'boolean',
+  })
+  active: boolean;
+
   ///////////////////////////////
   @CreateDateColumn({
     name: 'created_at',
