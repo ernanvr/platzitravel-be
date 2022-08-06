@@ -4,12 +4,16 @@ import {
   IsDate,
   IsNotEmpty,
   IsBoolean,
+  MaxLength,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateContractDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(8, {
+    message: 'Contract code is too long',
+  })
   contractCode: string;
 
   @IsNumber()
