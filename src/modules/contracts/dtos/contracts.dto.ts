@@ -39,7 +39,7 @@ export class CreateContractDto {
   paymentDate?: Date;
 
   @IsBoolean()
-  paid?: boolean;
+  paid: boolean;
 
   @IsDate()
   paymentTime?: Date;
@@ -48,7 +48,7 @@ export class CreateContractDto {
   paymentAmount?: number;
 
   @IsBoolean()
-  refunded?: boolean;
+  refunded: boolean;
 
   @IsDate()
   refundedTime?: Date;

@@ -82,7 +82,7 @@ export class Contract {
 
   @Column({
     type: 'boolean',
-    nullable: true,
+    default: false,
   })
   refunded: boolean;
 
