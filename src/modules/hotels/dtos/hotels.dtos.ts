@@ -1,9 +1,18 @@
-import { IsString, IsNotEmpty, IsNumber, IsBoolean } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsBoolean,
+  MaxLength,
+} from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateHotelDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255, {
+    message: 'Hotel name is too long',
+  })
   readonly hotelName: string;
 
   @IsNumber()
@@ -15,15 +24,14 @@ export class CreateHotelDto {
   readonly hotelAddress: string;
 
   @IsString()
-  readonly details: string;
+  readonly details?: string;
 
   @IsBoolean()
   @IsNotEmpty()
-  isPartner: boolean;
+  readonly isPartner: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
-  active: boolean;
+  readonly active?: boolean; //default: true
 
   @IsString()
   readonly picturesUrl: string[];
