@@ -1,6 +1,6 @@
 import { Controller, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { CreateContractDto, UpdateContractDto } from '../dtos/contracts.dto';
 import { Contract } from '../entities/contracts.entity';
 
@@ -10,11 +10,11 @@ export class ContractsController {
     @InjectRepository(Contract) private contractRepo: Repository<Contract>,
   ) {}
 
-  findAll() {
+  findAll(): Promise<Contract[]> {
     return this.contractRepo.find();
   }
 
-  findOne(id: number) {
+  findOne(id: number): Promise<Contract> {
     const contract = this.contractRepo.findOne({
       where: { id },
     });
@@ -26,20 +26,19 @@ export class ContractsController {
     return contract;
   }
 
-  create(payload: CreateContractDto) {
+  create(payload: CreateContractDto): Promise<Contract> {
     const newContract = this.contractRepo.create(payload);
     return this.contractRepo.save(newContract);
   }
 
-  async update(id: number, payload: UpdateContractDto) {
+  async update(id: number, payload: UpdateContractDto): Promise<Contract> {
     const contract = await this.findOne(id);
     this.contractRepo.merge(contract, payload);
     return this.contractRepo.save(contract);
   }
 
-  async delete(id: number) {
+  async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    await this.contractRepo.delete(id);
-    return true;
+    return this.contractRepo.delete(id);
   }
 }
