@@ -14,47 +14,47 @@ export class CreateContractDto {
   @MaxLength(8, {
     message: 'Contract code is too long',
   })
-  contractCode: string;
+  readonly contractCode: string;
 
   @IsNumber()
   @IsNotEmpty()
-  offerId: number;
+  readonly offerId: number;
 
   @IsNumber()
   @IsNotEmpty()
-  agentId: number;
+  readonly agentId: number;
 
   @IsNumber()
   @IsNotEmpty()
-  customerId: number;
+  readonly customerId: number;
 
   @IsDate()
-  timeSigned?: Date;
+  readonly timeSigned?: Date;
 
   @IsNumber()
   @IsNotEmpty()
-  totalPrice: number;
+  readonly totalPrice: number;
 
   @IsDate()
-  paymentDate?: Date;
+  readonly paymentDate?: Date;
 
   @IsBoolean()
-  paid: boolean;
+  readonly paid: boolean;
 
   @IsDate()
-  paymentTime?: Date;
+  readonly paymentTime?: Date;
 
   @IsNumber()
-  paymentAmount?: number;
+  readonly paymentAmount?: number;
 
   @IsBoolean()
-  refunded: boolean;
+  readonly refunded: boolean;
 
   @IsDate()
-  refundedTime?: Date;
+  readonly refundedTime?: Date;
 
   @IsNumber()
-  refundedAmount?: number;
+  readonly refundedAmount?: number;
 }
 
 export class UpdateContractDto extends PartialType(CreateContractDto) {}
