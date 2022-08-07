@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import {
   CreateTransportCompany,
   UpdateTransportCompany,
@@ -11,44 +11,42 @@ import { TransportCompany } from '../entities/transport-companies.entity';
 export class TransportCompaniesService {
   constructor(
     @InjectRepository(TransportCompany)
-    private transportCompanyRepo: Repository<TransportCompany>,
+    private transportCompanyRepository: Repository<TransportCompany>,
   ) {}
 
-  findAll() {
-    return this.transportCompanyRepo.find();
+  findAll(): Promise<TransportCompany[]> {
+    return this.transportCompanyRepository.find();
   }
 
-  findOne(id: number) {
-    const transportCompany = this.transportCompanyRepo.findOne({
+  async findOne(id: number): Promise<TransportCompany> {
+    const transportCompany = await this.transportCompanyRepository.findOne({
       where: { id },
     });
 
     if (!transportCompany) {
-      throw new NotFoundException(`The element with ${id} was not found`);
+      throw new NotFoundException(`The transport company ${id} was not found`);
     }
 
     return transportCompany;
   }
 
-  create(payload: CreateTransportCompany) {
-    const newTransportCompany = this.transportCompanyRepo.create(payload);
+  create(payload: CreateTransportCompany): Promise<TransportCompany> {
+    const newTransportCompany = this.transportCompanyRepository.create(payload);
 
-    return this.transportCompanyRepo.save(newTransportCompany);
+    return this.transportCompanyRepository.save(newTransportCompany);
   }
 
-  async update(id: number, payload: UpdateTransportCompany) {
-    const transportCompany = await this.transportCompanyRepo.findOne({
-      where: { id },
-    });
-    if (!transportCompany) {
-      throw new NotFoundException(`The element with ${id} was not found`);
-    }
-    this.transportCompanyRepo.merge(transportCompany, payload);
-    return this.transportCompanyRepo.save(transportCompany);
+  async update(
+    id: number,
+    payload: UpdateTransportCompany,
+  ): Promise<TransportCompany> {
+    const transportCompany = await this.findOne(id);
+    this.transportCompanyRepository.merge(transportCompany, payload);
+    return this.transportCompanyRepository.save(transportCompany);
   }
 
-  async delete(id: number) {
-    await this.transportCompanyRepo.delete(id);
-    return true;
+  async delete(id: number): Promise<DeleteResult> {
+    await this.findOne(id);
+    return this.transportCompanyRepository.delete(id);
   }
 }

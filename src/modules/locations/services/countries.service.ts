@@ -1,25 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dtos';
 import { Country } from '../entities/countries.entity';
 
 @Injectable()
 export class CountriesService {
   constructor(
-    @InjectRepository(Country) private countryRepo: Repository<Country>,
+    @InjectRepository(Country) private countryRepository: Repository<Country>,
   ) {}
 
-  findAll() {
-    return this.countryRepo.find({
+  findAll(): Promise<Country[]> {
+    return this.countryRepository.find({
       relations: {
         cities: true,
       },
     });
   }
 
-  findOne(id: number) {
-    const country = this.countryRepo.findOne({
+  async findOne(id: number): Promise<Country> {
+    const country = await this.countryRepository.findOne({
       relations: {
         cities: true,
       },
@@ -28,36 +28,25 @@ export class CountriesService {
       },
     });
     if (!country) {
-      throw new NotFoundException(`City ${id} was not found`);
+      throw new NotFoundException(`Country ${id} was not found`);
     }
     return country;
   }
 
-  create(payload: CreateCountryDto) {
-    const newCountry = this.countryRepo.create(payload);
+  create(payload: CreateCountryDto): Promise<Country> {
+    const newCountry = this.countryRepository.create(payload);
 
-    return this.countryRepo.save(newCountry);
+    return this.countryRepository.save(newCountry);
   }
 
-  async update(id: number, payload: UpdateCountryDto) {
-    const country = await this.countryRepo.findOne({
-      relations: {
-        cities: true,
-      },
-      where: {
-        id,
-      },
-    });
-    if (!country) {
-      throw new NotFoundException(`City ${id} was not found`);
-    }
-    this.countryRepo.merge(country, payload);
-    return this.countryRepo.save(country);
+  async update(id: number, payload: UpdateCountryDto): Promise<Country> {
+    const country = await this.findOne(id);
+    this.countryRepository.merge(country, payload);
+    return this.countryRepository.save(country);
   }
 
-  async delete(id: number) {
-    await this.countryRepo.delete(id);
-
-    return true;
+  async delete(id: number): Promise<DeleteResult> {
+    await this.findOne(id);
+    return this.countryRepository.delete(id);
   }
 }

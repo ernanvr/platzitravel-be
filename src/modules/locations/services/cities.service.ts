@@ -6,14 +6,16 @@ import { City } from '../entities/cities.entity';
 
 @Injectable()
 export class CitiesService {
-  constructor(@InjectRepository(City) private cityRepo: Repository<City>) {}
+  constructor(
+    @InjectRepository(City) private cityRepository: Repository<City>,
+  ) {}
 
   findAll(): Promise<City[]> {
-    return this.cityRepo.find();
+    return this.cityRepository.find();
   }
 
   async findOne(id: number): Promise<City> {
-    const city = await this.cityRepo.findOne({
+    const city = await this.cityRepository.findOne({
       where: {
         id: id,
       },
@@ -27,18 +29,18 @@ export class CitiesService {
   }
 
   create(payload: CreateCityDto) {
-    const newCity = this.cityRepo.create(payload);
-    return this.cityRepo.save(newCity);
+    const newCity = this.cityRepository.create(payload);
+    return this.cityRepository.save(newCity);
   }
 
   async update(id: number, body: UpdateCityDto): Promise<City> {
     const city = await this.findOne(id);
-    this.cityRepo.merge(city, body);
-    return this.cityRepo.save(city);
+    this.cityRepository.merge(city, body);
+    return this.cityRepository.save(city);
   }
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.cityRepo.delete(id);
+    return this.cityRepository.delete(id);
   }
 }

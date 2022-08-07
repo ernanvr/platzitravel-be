@@ -18,8 +18,8 @@ export class HotelProductsService {
     return this.hotelProductRepository.find();
   }
 
-  findOne(id: number): Promise<HotelProduct> {
-    const hotelProduct = this.hotelProductRepository.findOne({
+  async findOne(id: number): Promise<HotelProduct> {
+    const hotelProduct = await this.hotelProductRepository.findOne({
       where: { id },
     });
 

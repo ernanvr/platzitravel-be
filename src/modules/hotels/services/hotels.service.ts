@@ -12,13 +12,13 @@ export class HotelsService {
     return this.hotelRepo.find();
   }
 
-  findOne(id: number) {
-    const hotel = this.hotelRepo.findOne({
+  async findOne(id: number) {
+    const hotel = await this.hotelRepo.findOne({
       where: { id },
     });
 
     if (!hotel) {
-      throw new NotFoundException(`The ${id} does not exist`);
+      throw new NotFoundException(`Hotel ${id} does not exist`);
     }
 
     return hotel;
