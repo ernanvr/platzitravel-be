@@ -30,7 +30,7 @@ export class CreateHotelProductDto {
   readonly servicePrice: number;
 
   @IsString()
-  readonly details?: number;
+  readonly details?: string;
 
   @IsBoolean()
   readonly active?: boolean; //default: true
