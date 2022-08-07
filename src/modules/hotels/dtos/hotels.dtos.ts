@@ -5,6 +5,7 @@ import {
   IsBoolean,
   MaxLength,
   IsArray,
+  IsPositive,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
@@ -17,6 +18,7 @@ export class CreateHotelDto {
   readonly hotelName: string;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly cityId: number;
 
