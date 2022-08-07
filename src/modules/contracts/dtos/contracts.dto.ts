@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsBoolean,
   MaxLength,
+  IsPositive,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
@@ -17,14 +18,17 @@ export class CreateContractDto {
   readonly contractCode: string;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly offerId: number;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly agentId: number;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly customerId: number;
 
@@ -32,6 +36,7 @@ export class CreateContractDto {
   readonly timeSigned?: Date;
 
   @IsNumber()
+  @IsPositive()
   @IsNotEmpty()
   readonly totalPrice: number;
 
@@ -45,6 +50,7 @@ export class CreateContractDto {
   readonly paymentTime?: Date;
 
   @IsNumber()
+  @IsPositive()
   readonly paymentAmount?: number;
 
   @IsBoolean()
@@ -54,6 +60,7 @@ export class CreateContractDto {
   readonly refundedTime?: Date;
 
   @IsNumber()
+  @IsPositive()
   readonly refundedAmount?: number;
 }
 
