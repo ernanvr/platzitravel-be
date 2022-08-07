@@ -45,6 +45,6 @@ export class StationTypesService {
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.stationTypeRepository.delete(id);
+    return this.stationTypeRepository.softDelete(id);
   }
 }

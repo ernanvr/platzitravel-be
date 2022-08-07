@@ -44,7 +44,7 @@ export class HotelsService {
   }
 
   async delete(id: number) {
-    await this.hotelRepo.delete(id);
+    await this.hotelRepo.softDelete(id);
     return true;
   }
 }

@@ -40,6 +40,6 @@ export class ContractsService {
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.contractRepository.delete(id);
+    return this.contractRepository.softDelete(id);
   }
 }

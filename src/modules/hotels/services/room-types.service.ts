@@ -40,6 +40,6 @@ export class RoomTypesService {
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.roomTypeRepository.delete(id);
+    return this.roomTypeRepository.softDelete(id);
   }
 }

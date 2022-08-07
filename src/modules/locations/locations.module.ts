@@ -10,9 +10,11 @@ import { StationsService } from './services/stations.service';
 import { StationsController } from './controllers/stations.controller';
 import { StationTypesService } from './services/station-types.service';
 import { StationTypesController } from './controllers/station-types.controller';
+import { Station } from './entities/stations.entity';
+import { StationType } from './entities/station-types.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([City, Country])],
+  imports: [TypeOrmModule.forFeature([City, Country, Station, StationType])],
   providers: [
     CitiesService,
     CountriesService,
