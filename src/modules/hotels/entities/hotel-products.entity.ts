@@ -58,7 +58,7 @@ export class HotelProduct {
     nullable: true,
     length: 2083,
   })
-  picturesUrl?: string;
+  picturesUrl?: string[];
 
   /////////////////////////////////////
   @CreateDateColumn()
