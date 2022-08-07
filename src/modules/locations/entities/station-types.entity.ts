@@ -17,7 +17,7 @@ export class StationType {
     name: 'type_name',
     length: 50,
   })
-  typeName: string;
+  stationTypeName: string;
 
   //////////////////////////////
   @CreateDateColumn()

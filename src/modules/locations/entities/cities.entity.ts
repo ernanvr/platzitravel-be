@@ -9,6 +9,7 @@ import {
 import { Country } from './countries.entity';
 import { Hotel } from 'src/modules/hotels/entities/hotels.entity';
 import { TransportCompany } from 'src/modules/transport-companies/entities/transport-companies.entity';
+import { Station } from './stations.entity';
 
 @Entity()
 export class City {
@@ -29,7 +30,11 @@ export class City {
   })
   countryId: number;
 
-  @ManyToOne(() => Country, (country) => country.cities)
+  @ManyToOne(() => Country, (country) => country.cities, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
@@ -41,4 +46,7 @@ export class City {
     (transportCompany) => transportCompany.city,
   )
   transportCompanies: TransportCompany[];
+
+  @OneToMany(() => Station, (e) => e.city)
+  stations: Station[];
 }
