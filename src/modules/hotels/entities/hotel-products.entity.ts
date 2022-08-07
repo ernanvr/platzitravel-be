@@ -71,7 +71,11 @@ export class HotelProduct {
   @JoinColumn({ name: 'room_type_id' })
   roomType: RoomType;
 
-  @ManyToOne(() => Hotel, (hotel) => hotel.hotelProducts)
+  @ManyToOne(() => Hotel, (hotel) => hotel.hotelProducts, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'delete',
+  })
   @JoinColumn({ name: 'hotel_id' })
   hotel: Hotel;
 }

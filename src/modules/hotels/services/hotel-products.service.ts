@@ -46,6 +46,6 @@ export class HotelProductsService {
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.hotelProductRepository.delete(id);
+    return this.hotelProductRepository.softDelete(id);
   }
 }
