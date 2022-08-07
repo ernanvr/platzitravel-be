@@ -8,10 +8,22 @@ import { CountriesService } from './services/countries.service';
 import { Country } from './entities/countries.entity';
 import { StationsService } from './services/stations.service';
 import { StationsController } from './controllers/stations.controller';
+import { StationTypesService } from './services/station-types.service';
+import { StationTypesController } from './controllers/station-types.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([City, Country])],
-  providers: [CitiesService, CountriesService, StationsService],
-  controllers: [CitiesController, CountriesController, StationsController],
+  providers: [
+    CitiesService,
+    CountriesService,
+    StationsService,
+    StationTypesService,
+  ],
+  controllers: [
+    CitiesController,
+    CountriesController,
+    StationsController,
+    StationTypesController,
+  ],
 })
 export class LocationsModule {}
