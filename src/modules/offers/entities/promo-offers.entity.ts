@@ -17,14 +17,14 @@ export class PromoOffer {
     type: 'varchar',
     length: 8,
   })
-  PromoofferCode: string;
+  promoOfferCode: string;
 
   @Column({
     name: 'offer_name',
     type: 'varchar',
     length: 255,
   })
-  PromoofferName: string;
+  promoOfferName: string;
 
   @Column({
     name: 'active_from',

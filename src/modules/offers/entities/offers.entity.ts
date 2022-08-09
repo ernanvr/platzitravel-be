@@ -38,6 +38,34 @@ export class Offer {
   })
   activeTo: Date;
 
+  @Column({
+    name: 'time_accepted',
+    type: 'timestamp',
+    nullable: true,
+  })
+  timeAccepted: Date;
+
+  @Column({
+    type: 'boolean',
+    default: false,
+  })
+  accepted: boolean;
+
+  @Column({
+    name: 'promo_offer_id',
+  })
+  promoOfferId: number;
+
+  @Column({
+    name: 'agent_id',
+  })
+  agentId: number;
+
+  @Column({
+    name: 'customer_id',
+  })
+  customerId: number;
+
   ///////////////////////////////
   @CreateDateColumn()
   createdAt: Date;
