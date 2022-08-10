@@ -60,14 +60,16 @@ export class OfferHotelProduct {
   @Column({
     type: 'date',
     name: 'date_start',
+    nullable: true,
   })
-  dateStart: Date;
+  startDate: Date;
 
   @Column({
     type: 'date',
     name: 'date_end',
+    nullable: true,
   })
-  dateEnd: Date;
+  endDate: Date;
 
   /////////////////////////////
   @CreateDateColumn()

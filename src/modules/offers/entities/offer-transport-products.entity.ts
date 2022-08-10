@@ -28,6 +28,13 @@ export class OfferTransportProduct {
   quantity: number;
 
   @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+  })
+  price: number;
+
+  @Column({
     name: 'discount_percent',
     type: 'double',
     precision: 10,
