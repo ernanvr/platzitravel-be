@@ -1,7 +1,7 @@
 import { IsString, IsNumber, IsPositive, IsNotEmpty } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
-export class CreateOfferTransportProduct {
+export class CreateOfferTransportProductDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
@@ -35,6 +35,6 @@ export class CreateOfferTransportProduct {
   description?: string;
 }
 
-export class UpdateOfferTransportProduct extends PartialType(
-  CreateOfferTransportProduct,
+export class UpdateOfferTransportProductDto extends PartialType(
+  CreateOfferTransportProductDto,
 ) {}
