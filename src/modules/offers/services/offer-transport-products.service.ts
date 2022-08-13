@@ -11,15 +11,15 @@ import { OfferTransportProduct } from '../entities/offer-transport-products.enti
 export class OfferTransportProductsService {
   constructor(
     @InjectRepository(OfferTransportProduct)
-    private repository: Repository<OfferTransportProduct>,
+    private offerTransportProduct: Repository<OfferTransportProduct>,
   ) {}
 
   findAll(): Promise<OfferTransportProduct[]> {
-    return this.repository.find();
+    return this.offerTransportProduct.find();
   }
 
   findOne(id: number): Promise<OfferTransportProduct> {
-    return this.repository.findOne({
+    return this.offerTransportProduct.findOne({
       where: { id },
     });
   }
@@ -27,8 +27,8 @@ export class OfferTransportProductsService {
   create(
     payload: CreateOfferTransportProductDto,
   ): Promise<OfferTransportProduct> {
-    const response = this.repository.create(payload);
-    return this.repository.save(response);
+    const response = this.offerTransportProduct.create(payload);
+    return this.offerTransportProduct.save(response);
   }
 
   async update(
@@ -36,12 +36,12 @@ export class OfferTransportProductsService {
     payload: UpdateOfferTransportProductDto,
   ): Promise<OfferTransportProduct> {
     const response = await this.findOne(id);
-    this.repository.merge(response, payload);
-    return this.repository.save(response);
+    this.offerTransportProduct.merge(response, payload);
+    return this.offerTransportProduct.save(response);
   }
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.repository.softDelete(id);
+    return this.offerTransportProduct.softDelete(id);
   }
 }

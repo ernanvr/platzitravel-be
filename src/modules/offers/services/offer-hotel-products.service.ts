@@ -3,43 +3,43 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeleteResult } from 'typeorm';
 import { OfferHotelProduct } from '../entities/offer-hotel-products.entity';
 import {
-  UpdateHotelProductDto,
-  CreateHotelProductDto,
-} from 'src/modules/hotels/dtos/hotel-products.dtos';
+  CreateOfferHotelProductDto,
+  UpdateOfferHotelProductDto,
+} from '../dtos/offer-hotel-products.dtos';
 
 @Injectable()
 export class OfferHotelProductsService {
   constructor(
     @InjectRepository(OfferHotelProduct)
-    private repository: Repository<OfferHotelProduct>,
+    private offerHotelProductsRepository: Repository<OfferHotelProduct>,
   ) {}
 
   findAll(): Promise<OfferHotelProduct[]> {
-    return this.repository.find();
+    return this.offerHotelProductsRepository.find();
   }
 
   findOne(id: number): Promise<OfferHotelProduct> {
-    return this.repository.findOne({
+    return this.offerHotelProductsRepository.findOne({
       where: { id },
     });
   }
 
-  create(payload: CreateHotelProductDto): Promise<OfferHotelProduct> {
-    const response = this.repository.create(payload);
-    return this.repository.save(response);
+  create(payload: CreateOfferHotelProductDto): Promise<OfferHotelProduct> {
+    const response = this.offerHotelProductsRepository.create(payload);
+    return this.offerHotelProductsRepository.save(response);
   }
 
   async update(
     id: number,
-    payload: UpdateHotelProductDto,
+    payload: UpdateOfferHotelProductDto,
   ): Promise<OfferHotelProduct> {
     const response = await this.findOne(id);
-    this.repository.merge(response, payload);
-    return this.repository.save(response);
+    this.offerHotelProductsRepository.merge(response, payload);
+    return this.offerHotelProductsRepository.save(response);
   }
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.repository.softDelete(id);
+    return this.offerHotelProductsRepository.softDelete(id);
   }
 }

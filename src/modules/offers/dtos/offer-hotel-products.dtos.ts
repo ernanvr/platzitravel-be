@@ -7,7 +7,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateHotelProductDto {
+export class CreateOfferHotelProductDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
@@ -48,4 +48,6 @@ export class CreateHotelProductDto {
   endDate?: Date;
 }
 
-export class UpdateHotelProductDto extends PartialType(CreateHotelProductDto) {}
+export class UpdateOfferHotelProductDto extends PartialType(
+  CreateOfferHotelProductDto,
+) {}

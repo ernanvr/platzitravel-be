@@ -36,7 +36,7 @@ export class OfferHotelProduct {
 
   @Column({
     name: 'discount_percent',
-    type: 'double',
+    type: 'decimal',
     precision: 10,
     scale: 2,
     default: 0,
