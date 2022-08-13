@@ -25,4 +25,4 @@ export class CreatePromoOfferDto {
   activeTo: Date;
 }
 
-export class UpdatePromoOfferCode extends PartialType(CreatePromoOfferDto){}
+export class UpdatePromoOfferCode extends PartialType(CreatePromoOfferDto) {}

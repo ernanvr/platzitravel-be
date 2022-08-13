@@ -1,11 +1,15 @@
 import {
   Entity,
   Column,
+  OneToMany,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+import { Offer } from 'src/modules/offers/entities/offers.entity';
+import { PromoOfferTransportProduct } from './promo-offer-transport-products.entity';
+import { PromoOfferHotelProduct } from './promo-offer-hotel-products.entity';
 
 @Entity()
 export class PromoOffer {
@@ -47,4 +51,13 @@ export class PromoOffer {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @OneToMany(() => Offer, (e) => e.promoOffer)
+  offers: Offer[];
+
+  @OneToMany(() => PromoOfferTransportProduct, (e) => e.promoOffer)
+  promoOfferTransportProducts: PromoOfferTransportProduct[];
+
+  @OneToMany(() => PromoOfferHotelProduct, (e) => e.promoOffer)
+  promoOfferHotelProducts: PromoOfferHotelProduct[];
 }

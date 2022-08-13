@@ -1,5 +1,3 @@
-import { Agent } from 'src/modules/users/entities/agents.entity';
-import { Customer } from 'src/modules/users/entities/customer.entity';
 import {
   Entity,
   Column,
@@ -11,6 +9,9 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
+import { PromoOffer } from 'src/modules/promo-offers/entities/promo-offers.entity';
+import { Agent } from 'src/modules/users/entities/agents.entity';
+import { Customer } from 'src/modules/users/entities/customer.entity';
 import { OfferHotelProduct } from './offer-hotel-products.entity';
 import { OfferTransportProduct } from './offer-transport-products.entity';
 
@@ -90,6 +91,10 @@ export class Offer {
   @ManyToOne(() => Customer, (e) => e.offers)
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
+
+  @ManyToOne(() => PromoOffer, (e) => e.offers)
+  @JoinColumn({ name: 'promo_offer_id' })
+  promoOffer: PromoOffer;
 
   @OneToMany(() => OfferTransportProduct, (e) => e.offer)
   offerTransportProducts: OfferTransportProduct[];
