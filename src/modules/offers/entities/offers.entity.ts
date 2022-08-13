@@ -1,3 +1,5 @@
+import { Agent } from 'src/modules/users/entities/agents.entity';
+import { Customer } from 'src/modules/users/entities/customer.entity';
 import {
   Entity,
   Column,
@@ -5,7 +7,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
 } from 'typeorm';
+import { OfferHotelProduct } from './offer-hotel-products.entity';
+import { OfferTransportProduct } from './offer-transport-products.entity';
 
 @Entity()
 export class Offer {
@@ -75,4 +82,18 @@ export class Offer {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @ManyToOne(() => Agent, (e) => e.offers)
+  @JoinColumn({ name: 'agent_id' })
+  agent: Agent;
+
+  @ManyToOne(() => Customer, (e) => e.offers)
+  @JoinColumn({ name: 'customer_id' })
+  customer: Customer;
+
+  @OneToMany(() => OfferTransportProduct, (e) => e.offer)
+  offerTransportProducts: OfferTransportProduct[];
+
+  @OneToMany(() => OfferHotelProduct, (e) => e.offer)
+  offerHotelProducts: OfferHotelProduct[];
 }

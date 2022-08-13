@@ -1,4 +1,5 @@
 import { Contract } from 'src/modules/contracts/entities/contracts.entity';
+import { Offer } from 'src/modules/offers/entities/offers.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -52,4 +53,7 @@ export class Agent {
 
   @OneToMany(() => Contract, (contract) => contract.agent)
   contracts: Contract[];
+
+  @OneToMany(() => Offer, (e) => e.agent)
+  offers: Offer[];
 }

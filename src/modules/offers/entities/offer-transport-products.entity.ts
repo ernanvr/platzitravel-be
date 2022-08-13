@@ -5,7 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import { Offer } from './offers.entity';
 
 @Entity()
 export class OfferTransportProduct {
@@ -66,4 +69,8 @@ export class OfferTransportProduct {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @ManyToOne(() => Offer, (e) => e.offerTransportProducts)
+  @JoinColumn({ name: 'offer_id' })
+  offer: Offer;
 }

@@ -1,4 +1,5 @@
 import { Contract } from 'src/modules/contracts/entities/contracts.entity';
+import { Offer } from 'src/modules/offers/entities/offers.entity';
 import {
   Entity,
   Column,
@@ -69,4 +70,7 @@ export class Customer {
 
   @OneToMany(() => Contract, (contract) => contract.customer)
   contracts: Contract[];
+
+  @OneToMany(() => Offer, (e) => e.customer)
+  offers: Offer[];
 }
