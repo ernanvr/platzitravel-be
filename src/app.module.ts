@@ -6,6 +6,7 @@ import { ContractsModule } from './modules/contracts/contracts.module';
 import { HotelsModule } from './modules/hotels/hotels.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { UsersModule } from './modules/users/users.module';
+import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { UsersModule } from './modules/users/users.module';
       autoLoadEntities: true,
     }),
     TransportCompaniesModule,
+    PromoOffersModule,
     OffersModule,
     ContractsModule,
     HotelsModule,

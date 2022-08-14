@@ -12,7 +12,7 @@ import { Offer } from './entities/offers.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([OfferHotelProduct, OfferTransportProduct, Offer]),
+    TypeOrmModule.forFeature([Offer, OfferHotelProduct, OfferTransportProduct]),
   ],
   providers: [
     OfferHotelProductsService,

@@ -8,7 +8,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { PromoOffer } from './promo-offers.entity';
+import { PromoOffer } from 'src/modules/promo-offers/entities/promo-offers.entity';
 
 @Entity()
 export class PromoOfferHotelProduct {
@@ -16,9 +16,9 @@ export class PromoOfferHotelProduct {
   id: number;
 
   @Column({
-    name: 'offer_id',
+    name: 'promo_offer_id',
   })
-  offerId: number;
+  promoOfferId: number;
 
   @Column({
     name: 'hotel_product_id',
@@ -85,6 +85,6 @@ export class PromoOfferHotelProduct {
   deletedAt: Date;
 
   @ManyToOne(() => PromoOffer, (e) => e.promoOfferHotelProducts)
-  @JoinColumn({ name: 'offer_id' })
+  @JoinColumn({ name: 'promo_offer_id' })
   promoOffer: PromoOffer;
 }

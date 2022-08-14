@@ -5,8 +5,19 @@ import { PromoHotelProductsController } from './controllers/promo-hotel-products
 import { PromoHotelProductsService } from './services/promo-hotel-products.service';
 import { PromoTransportProductsService } from './services/promo-transport-products.service';
 import { PromoTransportProductsController } from './controllers/promo-transport-products.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { PromoOffer } from './entities/promo-offers.entity';
+import { PromoOfferTransportProduct } from './entities/promo-offer-transport-products.entity';
+import { PromoOfferHotelProduct } from './entities/promo-offer-hotel-products.entity';
 
 @Module({
+  imports: [
+    TypeOrmModule.forFeature([
+      PromoOffer,
+      PromoOfferHotelProduct,
+      PromoOfferTransportProduct,
+    ]),
+  ],
   providers: [
     PromoHotelProductsService,
     PromosService,
@@ -18,4 +29,4 @@ import { PromoTransportProductsController } from './controllers/promo-transport-
     PromoTransportProductsController,
   ],
 })
-export class OffersModule {}
+export class PromoOffersModule {}

@@ -6,6 +6,7 @@ import {
   IsBoolean,
   IsArray,
   IsUrl,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateTransportCompany {
@@ -36,10 +37,14 @@ export class CreateTransportCompany {
   @IsNotEmpty()
   active: boolean;
 
+  @IsArray()
   @IsUrl({
     each: true,
   })
-  @IsArray()
+  @MaxLength(255, {
+    message: 'Url is too long',
+    each: true,
+  })
   picturesUrl: string[];
 }
 

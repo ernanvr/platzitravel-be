@@ -7,7 +7,9 @@ import {
   JoinColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  DeleteDateColumn,
 } from 'typeorm';
+import { CompanyType } from './company-types.entity';
 
 @Entity()
 export class TransportCompany {
@@ -65,6 +67,7 @@ export class TransportCompany {
     name: 'pictures_url',
     type: 'varchar',
     array: true,
+    length: 255,
     nullable: true,
   })
   picturesUrl: string[];
@@ -80,7 +83,16 @@ export class TransportCompany {
   })
   updatedAt: Date;
 
-  @ManyToOne(() => City, (city) => city.transportCompanies)
+  @DeleteDateColumn({
+    name: 'deleted_at',
+  })
+  deletedAt: Date;
+
+  @ManyToOne(() => City, (e) => e.transportCompanies)
   @JoinColumn({ name: 'city_id' })
   city: City;
+
+  @ManyToOne(() => CompanyType, (e) => e.transportCompanies)
+  @JoinColumn({ name: 'company_type_id' })
+  companyType: CompanyType;
 }

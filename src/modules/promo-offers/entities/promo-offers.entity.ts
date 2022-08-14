@@ -8,8 +8,8 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { Offer } from 'src/modules/offers/entities/offers.entity';
-import { PromoOfferTransportProduct } from './promo-offer-transport-products.entity';
-import { PromoOfferHotelProduct } from './promo-offer-hotel-products.entity';
+import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
+import { PromoOfferHotelProduct } from 'src/modules/promo-offers/entities/promo-offer-hotel-products.entity';
 
 @Entity()
 export class PromoOffer {

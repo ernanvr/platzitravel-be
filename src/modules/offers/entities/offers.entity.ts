@@ -21,6 +21,11 @@ export class Offer {
   id: number;
 
   @Column({
+    name: 'promo_offer_id',
+  })
+  promoOfferId: number;
+
+  @Column({
     name: 'offer_code',
     type: 'varchar',
     length: 8,
@@ -58,11 +63,6 @@ export class Offer {
     default: false,
   })
   accepted: boolean;
-
-  @Column({
-    name: 'promo_offer_id',
-  })
-  promoOfferId: number;
 
   @Column({
     name: 'agent_id',
