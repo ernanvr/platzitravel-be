@@ -9,7 +9,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class CreateTransportCompany {
+export class CreateTransportCompanyDto {
   @IsString()
   @IsNotEmpty()
   companyName: string;
@@ -48,6 +48,6 @@ export class CreateTransportCompany {
   picturesUrl: string[];
 }
 
-export class UpdateTransportCompany extends PartialType(
+export class UpdateTransportCompanyDto extends PartialType(
   CreateTransportCompany,
 ) {}
