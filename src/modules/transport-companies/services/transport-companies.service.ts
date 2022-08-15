@@ -2,8 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import {
-  CreateTransportCompany,
-  UpdateTransportCompany,
+  CreateTransportCompanyDto,
+  UpdateTransportCompanyDto,
 } from '../dtos/transport-companies.dtos';
 import { TransportCompany } from '../entities/transport-companies.entity';
 
@@ -30,7 +30,7 @@ export class TransportCompaniesService {
     return transportCompany;
   }
 
-  create(payload: CreateTransportCompany): Promise<TransportCompany> {
+  create(payload: CreateTransportCompanyDto): Promise<TransportCompany> {
     const newTransportCompany = this.transportCompanyRepository.create(payload);
 
     return this.transportCompanyRepository.save(newTransportCompany);
@@ -38,7 +38,7 @@ export class TransportCompaniesService {
 
   async update(
     id: number,
-    payload: UpdateTransportCompany,
+    payload: UpdateTransportCompanyDto,
   ): Promise<TransportCompany> {
     const transportCompany = await this.findOne(id);
     this.transportCompanyRepository.merge(transportCompany, payload);

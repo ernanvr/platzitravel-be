@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransportCompaniesModule } from './modules/transport-companies/transport-companies.module';
 import { OffersModule } from './modules/offers/offers.module';
@@ -10,6 +11,10 @@ import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',

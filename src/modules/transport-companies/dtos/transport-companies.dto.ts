@@ -49,5 +49,5 @@ export class CreateTransportCompanyDto {
 }
 
 export class UpdateTransportCompanyDto extends PartialType(
-  CreateTransportCompany,
+  CreateTransportCompanyDto,
 ) {}
