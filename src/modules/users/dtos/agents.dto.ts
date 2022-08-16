@@ -10,17 +10,17 @@ export class CreateAgentDto {
   agentCode: string;
 
   @IsString()
+  @IsNotEmpty()
   @MaxLength(64, {
     message: 'firstname is too long',
   })
-  @IsNotEmpty()
   firstname: string;
 
   @IsString()
+  @IsNotEmpty()
   @MaxLength(64, {
     message: 'lastname is too long',
   })
-  @IsNotEmpty()
   lastname: string;
 
   @IsBoolean()

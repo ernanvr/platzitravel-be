@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { AgentsService } from '../services/agents.service';
 import { Agent } from '../entities/agents.entity';
-import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dtos';
+import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
 import { DeleteResult } from 'typeorm';
 
 @Controller('agents')

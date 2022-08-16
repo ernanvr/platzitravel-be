@@ -7,6 +7,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -50,6 +51,11 @@ export class Agent {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({
+    name: 'deleted_at',
+  })
+  deletedAt: Date;
 
   @OneToMany(() => Contract, (contract) => contract.agent)
   contracts: Contract[];
