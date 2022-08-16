@@ -10,6 +10,21 @@ import {
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateOfferDto {
+  @IsNumber()
+  @IsPositive()
+  @IsNotEmpty()
+  promoOfferId: number;
+
+  @IsNumber()
+  @IsPositive()
+  @IsNotEmpty()
+  agentId: number;
+
+  @IsNumber()
+  @IsPositive()
+  @IsNotEmpty()
+  customerId: number;
+
   @IsString()
   @IsNotEmpty()
   @MaxLength(8, {
@@ -33,25 +48,10 @@ export class CreateOfferDto {
   activeTo: Date;
 
   @IsDate()
-  timeAccepted: boolean;
+  timeAccepted?: boolean;
 
   @IsBoolean()
-  accepted: boolean;
-
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
-  promoOfferId: number;
-
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
-  agentId: number;
-
-  @IsNumber()
-  @IsPositive()
-  @IsNotEmpty()
-  customerId: number;
+  accepted?: boolean;
 }
 
 export class UpdateOfferDto extends PartialType(CreateOfferDto) {}

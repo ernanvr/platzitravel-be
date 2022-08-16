@@ -9,7 +9,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
-import { CreateOfferDto, UpdateOfferDto } from '../dtos/offers.dtos';
+import { CreateOfferDto, UpdateOfferDto } from '../dtos/offers.dto';
 import { Offer } from '../entities/offers.entity';
 import { OffersService } from '../services/offers.service';
 

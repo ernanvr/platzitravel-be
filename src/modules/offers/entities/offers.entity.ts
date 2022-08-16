@@ -23,13 +23,27 @@ export class Offer {
 
   @Column({
     name: 'promo_offer_id',
+    nullable: false,
   })
   promoOfferId: number;
+
+  @Column({
+    name: 'agent_id',
+    nullable: false,
+  })
+  agentId: number;
+
+  @Column({
+    name: 'customer_id',
+    nullable: false,
+  })
+  customerId: number;
 
   @Column({
     name: 'offer_code',
     type: 'varchar',
     length: 8,
+    nullable: false,
   })
   offerCode: string;
 
@@ -37,18 +51,21 @@ export class Offer {
     name: 'offer_name',
     type: 'varchar',
     length: 255,
+    nullable: false,
   })
   offerName: string;
 
   @Column({
     name: 'active_from',
     type: 'date',
+    nullable: false,
   })
   activeFrom: Date;
 
   @Column({
     name: 'active_to',
     type: 'date',
+    nullable: false,
   })
   activeTo: Date;
 
@@ -64,16 +81,6 @@ export class Offer {
     default: false,
   })
   accepted: boolean;
-
-  @Column({
-    name: 'agent_id',
-  })
-  agentId: number;
-
-  @Column({
-    name: 'customer_id',
-  })
-  customerId: number;
 
   ///////////////////////////////
   @CreateDateColumn()
