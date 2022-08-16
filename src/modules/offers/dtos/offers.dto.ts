@@ -13,45 +13,45 @@ export class CreateOfferDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  promoOfferId: number;
+  readonly promoOfferId: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  agentId: number;
+  readonly agentId: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  customerId: number;
+  readonly customerId: number;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(8, {
     message: 'Offer code is too long',
   })
-  offerCode: string;
+  readonly offerCode: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(255, {
     message: 'Offer code is too long',
   })
-  offerName: string;
+  readonly offerName: string;
 
   @IsDate()
   @IsNotEmpty()
-  activeFrom: Date;
+  readonly activeFrom: Date;
 
   @IsDate()
   @IsNotEmpty()
-  activeTo: Date;
+  readonly activeTo: Date;
 
   @IsDate()
-  timeAccepted?: boolean;
+  readonly timeAccepted?: boolean;
 
   @IsBoolean()
-  accepted?: boolean;
+  readonly accepted?: boolean;
 }
 
 export class UpdateOfferDto extends PartialType(CreateOfferDto) {}

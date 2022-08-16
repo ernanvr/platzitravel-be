@@ -27,7 +27,7 @@ export class CreateCustomerDto {
   @MaxLength(32, {
     message: 'Phone is too long',
   })
-  readonly phone: string;
+  readonly phone?: string;
 
   @IsString()
   @IsNotEmpty()
@@ -37,14 +37,14 @@ export class CreateCustomerDto {
   readonly mobile: string;
 
   @IsEmail()
+  @IsNotEmpty()
   @MaxLength(254, {
     message: 'Email is too long',
   })
   readonly email: string;
 
   @IsString()
-  @IsNotEmpty()
-  readonly details: string;
+  readonly details?: string;
 }
 
 export class UpdateCustomerDto extends PartialType(CreateCustomerDto) {}

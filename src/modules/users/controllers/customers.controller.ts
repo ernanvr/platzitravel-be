@@ -6,18 +6,14 @@ import {
   Post,
   Put,
   Delete,
-  // Res,
-  // HttpCode,
-  // HttpStatus,
 } from '@nestjs/common';
 import { Customer } from '../entities/customer.entity';
-// import { Response } from 'express';
 import { CustomersService } from 'src/modules/users/services/customers.service';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import {
   CreateCustomerDto,
   UpdateCustomerDto,
-} from 'src/modules/users/dtos/customers.dtos';
+} from 'src/modules/users/dtos/customers.dto';
 import { DeleteResult } from 'typeorm';
 
 @Controller('customers')
@@ -28,15 +24,10 @@ export class CustomersController {
   getAll(): Promise<Customer[]> {
     return this.customersService.findAll();
   }
-  // getAll(@Res() response: Response): Promise<Customer[]> {
-  //   response.status(200).send(this.customersService.findAll());
-  // }
 
   @Get(':id')
-  // @HttpCode(HttpStatus.ACCEPTED)
   getId(@Param('id', ParseIntPipe) id: number): Promise<Customer> {
-    const customer = this.customersService.findOne(id);
-    return customer;
+    return this.customersService.findOne(id);
   }
 
   @Post()

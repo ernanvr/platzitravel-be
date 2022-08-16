@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Customer } from 'src/modules/users/entities/customer.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
-import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customers.dtos';
+import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customers.dto';
 
 @Injectable()
 export class CustomersService {
@@ -14,8 +14,8 @@ export class CustomersService {
     return this.customerRepo.find();
   }
 
-  findOne(id: number): Promise<Customer> {
-    const response = this.customerRepo.findOne({
+  async findOne(id: number): Promise<Customer> {
+    const response = await this.customerRepo.findOne({
       where: { id },
     });
     if (!response) {
@@ -37,6 +37,6 @@ export class CustomersService {
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.customerRepo.delete(id);
+    return this.customerRepo.softDelete(id);
   }
 }

@@ -17,18 +17,21 @@ export class Customer {
   @Column({
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   firstname: string;
 
   @Column({
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   lastname: string;
 
   @Column({
     type: 'varchar',
     length: 255,
+    nullable: false,
   })
   address: string;
 
@@ -42,12 +45,14 @@ export class Customer {
   @Column({
     type: 'varchar',
     length: 32,
+    nullable: false,
   })
   mobile: string;
 
   @Column({
     type: 'varchar',
     length: 254,
+    nullable: false,
   })
   email: string;
 
