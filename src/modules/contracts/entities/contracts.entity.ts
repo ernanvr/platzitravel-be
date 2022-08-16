@@ -1,3 +1,4 @@
+import { Offer } from 'src/modules/offers/entities/offers.entity';
 import { Agent } from 'src/modules/users/entities/agents.entity';
 import { Customer } from 'src/modules/users/entities/customer.entity';
 import {
@@ -8,6 +9,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -19,21 +21,25 @@ export class Contract {
     name: 'contract_code',
     type: 'varchar',
     length: 8,
+    nullable: false,
   })
   contractCode: string;
 
   @Column({
     name: 'offer_id',
+    nullable: false,
   })
   offerId: number;
 
   @Column({
     name: 'agent_id',
+    nullable: false,
   })
   agentId: number;
 
   @Column({
     name: 'customer_id',
+    nullable: false,
   })
   customer_id: number;
 
@@ -49,7 +55,7 @@ export class Contract {
     type: 'decimal',
     precision: 10,
     scale: 2,
-    default: 0,
+    nullable: false,
   })
   totalPrice: number;
 
@@ -63,6 +69,7 @@ export class Contract {
   @Column({
     type: 'boolean',
     default: false,
+    nullable: false,
   })
   paid: boolean;
 
@@ -78,13 +85,14 @@ export class Contract {
     type: 'decimal',
     precision: 10,
     scale: 2,
-    default: 0,
+    nullable: true,
   })
   paymentAmount: number;
 
   @Column({
     type: 'boolean',
     default: false,
+    nullable: false,
   })
   refunded: boolean;
 
@@ -100,7 +108,7 @@ export class Contract {
     type: 'decimal',
     precision: 10,
     scale: 2,
-    default: 0,
+    nullable: true,
   })
   refundedAmount: number;
 
@@ -115,6 +123,11 @@ export class Contract {
   })
   updatedAt: Date;
 
+  @DeleteDateColumn({
+    name: 'deleted_at',
+  })
+  deletedAt: Date;
+
   @ManyToOne(() => Agent, (agent) => agent.contracts)
   @JoinColumn({ name: 'agent_id' })
   agent: Agent;
@@ -122,4 +135,8 @@ export class Contract {
   @ManyToOne(() => Customer, (customer) => customer.contracts)
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
+
+  @ManyToOne(() => Offer, (e) => e.contracts)
+  @JoinColumn({ name: 'offer_id' })
+  offer: Offer;
 }

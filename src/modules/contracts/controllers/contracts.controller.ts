@@ -1,44 +1,30 @@
-import { Controller, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { Controller } from '@nestjs/common';
+import { DeleteResult } from 'typeorm';
 import { CreateContractDto, UpdateContractDto } from '../dtos/contracts.dto';
 import { Contract } from '../entities/contracts.entity';
+import { ContractsService } from '../services/contracts.service';
 
 @Controller('contracts')
 export class ContractsController {
-  constructor(
-    @InjectRepository(Contract) private contractRepo: Repository<Contract>,
-  ) {}
+  constructor(private contractsService: ContractsService) {}
 
   findAll(): Promise<Contract[]> {
-    return this.contractRepo.find();
+    return this.contractsService.findAll();
   }
 
   findOne(id: number): Promise<Contract> {
-    const contract = this.contractRepo.findOne({
-      where: { id },
-    });
-
-    if (!contract) {
-      throw new NotFoundException(`Id ${id} wasn't found`);
-    }
-
-    return contract;
+    return this.contractsService.findOne(id);
   }
 
   create(payload: CreateContractDto): Promise<Contract> {
-    const newContract = this.contractRepo.create(payload);
-    return this.contractRepo.save(newContract);
+    return this.contractsService.create(payload);
   }
 
   async update(id: number, payload: UpdateContractDto): Promise<Contract> {
-    const contract = await this.findOne(id);
-    this.contractRepo.merge(contract, payload);
-    return this.contractRepo.save(contract);
+    return this.contractsService.update(id, payload);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    await this.findOne(id);
-    return this.contractRepo.delete(id);
+    return this.contractsService.delete(id);
   }
 }

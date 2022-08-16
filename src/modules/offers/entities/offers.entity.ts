@@ -14,6 +14,7 @@ import { Agent } from 'src/modules/users/entities/agents.entity';
 import { Customer } from 'src/modules/users/entities/customer.entity';
 import { OfferHotelProduct } from './offer-hotel-products.entity';
 import { OfferTransportProduct } from './offer-transport-products.entity';
+import { Contract } from 'src/modules/contracts/entities/contracts.entity';
 
 @Entity()
 export class Offer {
@@ -101,4 +102,7 @@ export class Offer {
 
   @OneToMany(() => OfferHotelProduct, (e) => e.offer)
   offerHotelProducts: OfferHotelProduct[];
+
+  @OneToMany(() => Contract, (e) => e.offer)
+  contracts: Contract[];
 }
