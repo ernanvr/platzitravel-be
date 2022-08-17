@@ -4,7 +4,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import {
   CreateOfferTransportProductDto,
   UpdateOfferTransportProductDto,
-} from '../dtos/offer-transport-products.dtos';
+} from '../dtos/offer-transport-products.dto';
 import { OfferTransportProduct } from '../entities/offer-transport-products.entity';
 
 @Injectable()
@@ -18,10 +18,16 @@ export class OfferTransportProductsService {
     return this.offerTransportProduct.find();
   }
 
-  findOne(id: number): Promise<OfferTransportProduct> {
-    return this.offerTransportProduct.findOne({
+  async findOne(id: number): Promise<OfferTransportProduct> {
+    const response = await this.offerTransportProduct.findOne({
       where: { id },
     });
+
+    if (!response) {
+      throw new Error(`Offer transport product ${id} not found`);
+    }
+
+    return response;
   }
 
   create(

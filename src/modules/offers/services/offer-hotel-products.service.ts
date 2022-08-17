@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DeleteResult } from 'typeorm';
 import { OfferHotelProduct } from '../entities/offer-hotel-products.entity';
 import {
   CreateOfferHotelProductDto,
   UpdateOfferHotelProductDto,
-} from '../dtos/offer-hotel-products.dtos';
+} from '../dtos/offer-hotel-products.dto';
 
 @Injectable()
 export class OfferHotelProductsService {
@@ -18,10 +18,16 @@ export class OfferHotelProductsService {
     return this.offerHotelProductsRepository.find();
   }
 
-  findOne(id: number): Promise<OfferHotelProduct> {
-    return this.offerHotelProductsRepository.findOne({
+  async findOne(id: number): Promise<OfferHotelProduct> {
+    const response = await this.offerHotelProductsRepository.findOne({
       where: { id },
     });
+
+    if (!response) {
+      throw new NotFoundException(`Offer hotel product ${id} not found`);
+    }
+
+    return response;
   }
 
   create(payload: CreateOfferHotelProductDto): Promise<OfferHotelProduct> {

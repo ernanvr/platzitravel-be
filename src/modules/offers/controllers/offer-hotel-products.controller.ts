@@ -15,7 +15,7 @@ import { OfferHotelProductsService } from '../services/offer-hotel-products.serv
 import {
   CreateOfferHotelProductDto,
   UpdateOfferHotelProductDto,
-} from '../dtos/offer-hotel-products.dtos';
+} from '../dtos/offer-hotel-products.dto';
 
 @Controller('offer-hotel-products')
 export class OfferHotelProductsController {

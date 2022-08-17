@@ -17,16 +17,19 @@ export class OfferHotelProduct {
 
   @Column({
     name: 'offer_id',
+    nullable: false,
   })
   offerId: number;
 
   @Column({
     name: 'hotel_product_id',
+    nullable: false,
   })
   hotelProductId: number;
 
   @Column({
     type: 'integer',
+    nullable: false,
   })
   quantity: number;
 
@@ -34,6 +37,7 @@ export class OfferHotelProduct {
     type: 'decimal',
     precision: 10,
     scale: 2,
+    nullable: false,
   })
   price: number;
 
@@ -51,6 +55,7 @@ export class OfferHotelProduct {
     type: 'decimal',
     precision: 10,
     scale: 2,
+    nullable: false,
   })
   finalProductPrice: number;
 

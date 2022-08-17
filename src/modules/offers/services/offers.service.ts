@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Offer } from '../entities/offers.entity';
 import { DeleteResult, Repository } from 'typeorm';
@@ -20,7 +20,7 @@ export class OffersService {
     });
 
     if (!response) {
-      throw new Error(`Offer ${id} not found`);
+      throw new NotFoundException(`Offer ${id} not found`);
     }
 
     return response;

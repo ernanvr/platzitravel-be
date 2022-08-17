@@ -11,41 +11,41 @@ export class CreateOfferHotelProductDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  offerId: number;
+  readonly offerId: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  hotelProductId: number;
+  readonly hotelProductId: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  quantity: number;
+  readonly quantity: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  price: number;
+  readonly price: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  discountPercent?: number;
+  readonly discountPercent?: number;
 
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  finalProductPrice: number;
+  readonly finalProductPrice: number;
 
   @IsString()
-  description?: string;
+  readonly description?: string;
 
   @IsDate()
-  startDate?: Date;
+  readonly startDate?: Date;
 
   @IsDate()
-  endDate?: Date;
+  readonly endDate?: Date;
 }
 
 export class UpdateOfferHotelProductDto extends PartialType(
