@@ -4,7 +4,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import {
   CreatePromoOfferHotelProductDto,
   UpdatePromoOfferHotelProductDto,
-} from '../dtos/promo-offers-hotel-products.dtos';
+} from '../dtos/promo-offers-hotel-products.dto';
 import { PromoOfferHotelProduct } from '../entities/promo-offer-hotel-products.entity';
 
 @Injectable()
@@ -18,8 +18,8 @@ export class PromoHotelProductsService {
     return this.promoHotelProductRepository.find();
   }
 
-  findOne(id: number): Promise<PromoOfferHotelProduct> {
-    const response = this.promoHotelProductRepository.findOne({
+  async findOne(id: number): Promise<PromoOfferHotelProduct> {
+    const response = await this.promoHotelProductRepository.findOne({
       where: { id },
     });
 

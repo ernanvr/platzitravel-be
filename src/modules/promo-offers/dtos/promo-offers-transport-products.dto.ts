@@ -29,7 +29,7 @@ export class CreatePromoOfferTransportProductDto {
   @IsNumber()
   @IsPositive()
   @IsNotEmpty()
-  finalProductPrice?: number;
+  finalProductPrice: number;
 
   @IsString()
   description?: string;

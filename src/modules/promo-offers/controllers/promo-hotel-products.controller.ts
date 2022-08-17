@@ -13,7 +13,7 @@ import { PromoOfferHotelProduct } from '../entities/promo-offer-hotel-products.e
 import {
   CreatePromoOfferHotelProductDto,
   UpdatePromoOfferHotelProductDto,
-} from '../dtos/promo-offers-hotel-products.dtos';
+} from '../dtos/promo-offers-hotel-products.dto';
 import { DeleteResult } from 'typeorm';
 
 @Controller('promo-hotel-products')

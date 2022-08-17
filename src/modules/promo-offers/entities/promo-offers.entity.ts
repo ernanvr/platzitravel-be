@@ -20,6 +20,7 @@ export class PromoOffer {
     name: 'offer_code',
     type: 'varchar',
     length: 8,
+    nullable: false,
   })
   promoOfferCode: string;
 
@@ -27,18 +28,21 @@ export class PromoOffer {
     name: 'offer_name',
     type: 'varchar',
     length: 255,
+    nullable: false,
   })
   promoOfferName: string;
 
   @Column({
     name: 'active_from',
     type: 'date',
+    nullable: false,
   })
   activeFrom: Date;
 
   @Column({
     name: 'active_to',
     type: 'date',
+    nullable: false,
   })
   activeTo: Date;
 

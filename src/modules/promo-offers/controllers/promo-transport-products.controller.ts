@@ -14,7 +14,7 @@ import { PromoOfferTransportProduct } from '../entities/promo-offer-transport-pr
 import {
   CreatePromoOfferTransportProductDto,
   UpdatePromoOfferTransportProductDto,
-} from '../dtos/promo-offers-transport-products.dtos';
+} from '../dtos/promo-offers-transport-products.dto';
 
 @Controller('promo-transport-products')
 export class PromoTransportProductsController {

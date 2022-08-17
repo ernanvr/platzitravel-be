@@ -12,7 +12,7 @@ import { DeleteResult } from 'typeorm';
 import {
   CreatePromoOfferDto,
   UpdatePromoOfferDto,
-} from '../dtos/promo-offers.dtos';
+} from '../dtos/promo-offers.dto';
 import { PromoOffer } from '../entities/promo-offers.entity';
 import { PromosService } from '../services/promos.service';
 

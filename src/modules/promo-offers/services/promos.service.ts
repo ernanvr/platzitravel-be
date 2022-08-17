@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 import {
   CreatePromoOfferDto,
   UpdatePromoOfferDto,
-} from '../dtos/promo-offers.dtos';
+} from '../dtos/promo-offers.dto';
 import { PromoOffer } from '../entities/promo-offers.entity';
 
 @Injectable()
@@ -18,8 +18,8 @@ export class PromosService {
     return this.promoRepository.find();
   }
 
-  findOne(id: number): Promise<PromoOffer> {
-    const response = this.promoRepository.findOne({
+  async findOne(id: number): Promise<PromoOffer> {
+    const response = await this.promoRepository.findOne({
       where: { id },
     });
 

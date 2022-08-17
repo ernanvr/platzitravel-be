@@ -17,16 +17,19 @@ export class PromoOfferTransportProduct {
 
   @Column({
     name: 'promo_offer_id',
+    nullable: false,
   })
   promoOfferId: number;
 
   @Column({
     name: 'transport_product_id',
+    nullable: false,
   })
   transportProductId: number;
 
   @Column({
     type: 'integer',
+    nullable: false,
   })
   quantity: number;
 
@@ -34,6 +37,7 @@ export class PromoOfferTransportProduct {
     type: 'decimal',
     precision: 10,
     scale: 2,
+    nullable: false,
   })
   price: number;
 
@@ -51,6 +55,7 @@ export class PromoOfferTransportProduct {
     type: 'decimal',
     precision: 10,
     scale: 2,
+    nullable: false,
   })
   finalProductPrice: number;
 
