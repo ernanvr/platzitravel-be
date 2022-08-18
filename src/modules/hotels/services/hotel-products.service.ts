@@ -4,7 +4,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import {
   CreateHotelProductDto,
   UpdateHotelProductDto,
-} from '../dtos/hotel-products.dtos';
+} from '../dtos/hotel-products.dto';
 import { HotelProduct } from '../entities/hotel-products.entity';
 
 @Injectable()

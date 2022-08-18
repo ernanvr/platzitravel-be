@@ -17,16 +17,19 @@ export class HotelProduct {
 
   @Column({
     name: 'hotel_id',
+    nullable: false,
   })
   hotelId: number;
 
   @Column({
     name: 'room_type_id',
+    nullable: false,
   })
   roomTypeId: number;
 
   @Column({
     type: 'integer',
+    nullable: false,
   })
   quantity: number;
 
@@ -35,7 +38,7 @@ export class HotelProduct {
     type: 'decimal',
     precision: 10,
     scale: 2,
-    default: 0,
+    nullable: false,
   })
   servicePrice: number;
 
@@ -48,6 +51,7 @@ export class HotelProduct {
   @Column({
     type: 'boolean',
     default: true,
+    nullable: false,
   })
   active: boolean;
 

@@ -11,7 +11,7 @@ import {
 import {
   CreateHotelProductDto,
   UpdateHotelProductDto,
-} from '../dtos/hotel-products.dtos';
+} from '../dtos/hotel-products.dto';
 import { HotelProduct } from '../entities/hotel-products.entity';
 import { HotelProductsService } from '../services/hotel-products.service';
 
@@ -30,7 +30,7 @@ export class HotelProductsController {
   }
 
   @Post()
-  create(@Body() payload: CreateHotelProductDto) {
+  create(@Body() payload: CreateHotelProductDto): Promise<HotelProduct> {
     return this.hotelProductService.create(payload);
   }
 
