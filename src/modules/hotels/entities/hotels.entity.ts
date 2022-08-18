@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   JoinColumn,
   OneToMany,
+  DeleteDateColumn,
 } from 'typeorm';
 import { City } from 'src/modules/locations/entities/cities.entity';
 import { HotelProduct } from './hotel-products.entity';
@@ -20,11 +21,13 @@ export class Hotel {
     name: 'hotel_name',
     type: 'varchar',
     length: 255,
+    nullable: false,
   })
   hotelName: string;
 
   @Column({
     name: 'city_id',
+    nullable: false,
   })
   cityId: number;
 
@@ -32,6 +35,7 @@ export class Hotel {
     name: 'hotel_address',
     type: 'varchar',
     length: 255,
+    nullable: false,
   })
   hotelAddress: string;
 
@@ -44,6 +48,7 @@ export class Hotel {
   @Column({
     name: 'is_partner',
     type: 'boolean',
+    nullable: false,
   })
   isPartner: boolean;
 
@@ -71,6 +76,9 @@ export class Hotel {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne(() => City, (city) => city.hotels)
   @JoinColumn({ name: 'city_id' })

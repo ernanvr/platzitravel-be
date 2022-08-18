@@ -6,6 +6,7 @@ import {
   MaxLength,
   IsArray,
   IsPositive,
+  IsUrl,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
@@ -37,7 +38,7 @@ export class CreateHotelDto {
   readonly active?: boolean; //default: true
 
   @IsArray()
-  @IsString({
+  @IsUrl({
     each: true,
   })
   readonly picturesUrl?: string[];
