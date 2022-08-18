@@ -1,19 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { CreateHotelDto, UpdateHotelDto } from '../dtos/hotels.dtos';
+import { DeleteResult, Repository } from 'typeorm';
+import { CreateHotelDto, UpdateHotelDto } from '../dtos/hotels.dto';
 import { Hotel } from '../entities/hotels.entity';
 
 @Injectable()
 export class HotelsService {
-  constructor(@InjectRepository(Hotel) private hotelRepo: Repository<Hotel>) {}
+  constructor(
+    @InjectRepository(Hotel) private hotelRepository: Repository<Hotel>,
+  ) {}
 
-  findAll() {
-    return this.hotelRepo.find();
+  findAll(): Promise<Hotel[]> {
+    return this.hotelRepository.find();
   }
 
-  async findOne(id: number) {
-    const hotel = await this.hotelRepo.findOne({
+  async findOne(id: number): Promise<Hotel> {
+    const hotel = await this.hotelRepository.findOne({
       where: { id },
     });
 
@@ -24,27 +26,20 @@ export class HotelsService {
     return hotel;
   }
 
-  create(payload: CreateHotelDto) {
-    const newHotel = this.hotelRepo.create(payload);
+  create(payload: CreateHotelDto): Promise<Hotel> {
+    const newHotel = this.hotelRepository.create(payload);
 
-    return this.hotelRepo.save(newHotel);
+    return this.hotelRepository.save(newHotel);
   }
 
-  async update(id: number, payload: UpdateHotelDto) {
-    const hotel = await this.hotelRepo.findOne({
-      where: { id },
-    });
-
-    if (!hotel) {
-      throw new NotFoundException(`The ${id} does not exist`);
-    }
-
-    this.hotelRepo.merge(hotel, payload);
-    return this.hotelRepo.save(hotel);
+  async update(id: number, payload: UpdateHotelDto): Promise<Hotel> {
+    const hotel = await this.findOne(id);
+    this.hotelRepository.merge(hotel, payload);
+    return this.hotelRepository.save(hotel);
   }
 
-  async delete(id: number) {
-    await this.hotelRepo.softDelete(id);
-    return true;
+  async delete(id: number): Promise<DeleteResult> {
+    await this.findOne(id);
+    return this.hotelRepository.softDelete(id);
   }
 }
