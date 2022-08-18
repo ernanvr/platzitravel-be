@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
-import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dtos';
+import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dto';
 import { RoomType } from '../entities/room-types.entity';
 
 @Injectable()

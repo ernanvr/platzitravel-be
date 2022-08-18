@@ -9,7 +9,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
-import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dtos';
+import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dto';
 import { RoomType } from '../entities/room-types.entity';
 import { RoomTypesService } from '../services/room-types.service';
 
