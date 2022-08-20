@@ -128,15 +128,27 @@ export class Contract {
   })
   deletedAt: Date;
 
-  @ManyToOne(() => Agent, (agent) => agent.contracts)
+  @ManyToOne(() => Agent, (agent) => agent.contracts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'agent_id' })
   agent: Agent;
 
-  @ManyToOne(() => Customer, (customer) => customer.contracts)
+  @ManyToOne(() => Customer, (customer) => customer.contracts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
-  @ManyToOne(() => Offer, (e) => e.contracts)
+  @ManyToOne(() => Offer, (e) => e.contracts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'offer_id' })
   offer: Offer;
 }

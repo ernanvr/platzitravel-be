@@ -37,6 +37,8 @@ export class CompanyType {
   })
   deletedAt: Date;
 
-  @OneToMany(() => TransportCompany, (e) => e.companyType)
+  @OneToMany(() => TransportCompany, (e) => e.companyType, {
+    cascade: true,
+  })
   transportCompanies: TransportCompany;
 }

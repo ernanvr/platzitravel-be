@@ -80,10 +80,16 @@ export class Hotel {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @ManyToOne(() => City, (city) => city.hotels)
+  @ManyToOne(() => City, (city) => city.hotels, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'city_id' })
   city: City;
 
-  @OneToMany(() => HotelProduct, (hotelProduct) => hotelProduct.hotel)
+  @OneToMany(() => HotelProduct, (hotelProduct) => hotelProduct.hotel, {
+    cascade: true,
+  })
   hotelProducts: HotelProduct[];
 }

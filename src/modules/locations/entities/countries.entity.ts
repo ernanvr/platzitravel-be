@@ -22,6 +22,8 @@ export class Country {
   })
   countryName: string;
 
-  @OneToMany(() => City, (city) => city.country)
+  @OneToMany(() => City, (city) => city.country, {
+    cascade: true,
+  })
   cities: City[];
 }

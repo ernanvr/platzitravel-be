@@ -5,6 +5,7 @@ import {
   UpdateDateColumn,
   PrimaryGeneratedColumn,
   OneToMany,
+  DeleteDateColumn,
 } from 'typeorm';
 import { HotelProduct } from './hotel-products.entity';
 
@@ -27,6 +28,11 @@ export class RoomType {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => HotelProduct, (hotelProduct) => hotelProduct.roomType)
+  @DeleteDateColumn()
+  deletedAt: Date;
+
+  @OneToMany(() => HotelProduct, (hotelProduct) => hotelProduct.roomType, {
+    cascade: true,
+  })
   hotelProducts: HotelProduct[];
 }

@@ -9,6 +9,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Offer } from 'src/modules/offers/entities/offers.entity';
+import { HotelProduct } from 'src/modules/hotels/entities/hotel-products.entity';
 
 @Entity()
 export class OfferHotelProduct {
@@ -92,4 +93,11 @@ export class OfferHotelProduct {
   @ManyToOne(() => Offer, (e) => e.offerHotelProducts)
   @JoinColumn({ name: 'offer_id' })
   offer: Offer;
+
+  @ManyToOne(() => HotelProduct, (e) => e.offerHotelProducts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'hotel_product_id' })
+  hotelProduct: HotelProduct;
 }

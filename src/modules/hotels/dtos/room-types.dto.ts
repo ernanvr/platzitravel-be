@@ -7,7 +7,7 @@ export class CreateRoomType {
   @MaxLength(50, {
     message: 'Description is too long',
   })
-  description: string;
+  readonly description: string;
 }
 
 export class UpdateRoomType extends PartialType(CreateRoomType) {}

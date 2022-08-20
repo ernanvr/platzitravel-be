@@ -1,3 +1,5 @@
+import { OfferHotelProduct } from 'src/modules/offers/entities/offer-hotel-products.entity';
+import { PromoOfferHotelProduct } from 'src/modules/promo-offers/entities/promo-offer-hotel-products.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -6,6 +8,8 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { Hotel } from './hotels.entity';
 import { RoomType } from './room-types.entity';
@@ -71,15 +75,32 @@ export class HotelProduct {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => RoomType, (roomtype) => roomtype.hotelProducts)
+  @DeleteDateColumn()
+  deletedAt: Date;
+
+  @ManyToOne(() => RoomType, (roomtype) => roomtype.hotelProducts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'room_type_id' })
   roomType: RoomType;
 
   @ManyToOne(() => Hotel, (hotel) => hotel.hotelProducts, {
-    onDelete: 'CASCADE',
+    onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
-    orphanedRowAction: 'delete',
+    orphanedRowAction: 'soft-delete',
   })
   @JoinColumn({ name: 'hotel_id' })
   hotel: Hotel;
+
+  @OneToMany(() => OfferHotelProduct, (e) => e.hotelProduct, {
+    cascade: true,
+  })
+  offerHotelProducts: OfferHotelProduct[];
+
+  @OneToMany(() => PromoOfferHotelProduct, (e) => e.hotelProduct, {
+    cascade: true,
+  })
+  promoOfferHotelProducts: PromoOfferHotelProduct[];
 }

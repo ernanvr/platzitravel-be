@@ -7,6 +7,6 @@ export class CreateStationTypeDto {
   @MaxLength(50, {
     message: 'Name of station type is too long',
   })
-  stationTypeName: string;
+  readonly stationTypeName: string;
 }
 export class UpdateStationTypeDto extends PartialType(CreateStationTypeDto) {}

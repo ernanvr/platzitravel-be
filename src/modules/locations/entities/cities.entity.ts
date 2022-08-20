@@ -33,20 +33,25 @@ export class City {
   @ManyToOne(() => Country, (country) => country.cities, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
-    orphanedRowAction: 'delete',
+    orphanedRowAction: 'soft-delete',
   })
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @OneToMany(() => Hotel, (hotel) => hotel.city)
+  @OneToMany(() => Hotel, (hotel) => hotel.city, {
+    cascade: true,
+  })
   hotels: Hotel[];
 
   @OneToMany(
     () => TransportCompany,
     (transportCompany) => transportCompany.city,
+    { cascade: true },
   )
   transportCompanies: TransportCompany[];
 
-  @OneToMany(() => Station, (e) => e.city)
+  @OneToMany(() => Station, (e) => e.city, {
+    cascade: true,
+  })
   stations: Station[];
 }

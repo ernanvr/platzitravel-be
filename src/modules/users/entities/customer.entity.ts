@@ -73,9 +73,13 @@ export class Customer {
   })
   updatedAt: Date;
 
-  @OneToMany(() => Contract, (contract) => contract.customer)
+  @OneToMany(() => Contract, (contract) => contract.customer, {
+    cascade: true,
+  })
   contracts: Contract[];
 
-  @OneToMany(() => Offer, (e) => e.customer)
+  @OneToMany(() => Offer, (e) => e.customer, {
+    cascade: true,
+  })
   offers: Offer[];
 }

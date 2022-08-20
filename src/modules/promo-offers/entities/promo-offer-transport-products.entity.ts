@@ -9,6 +9,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { PromoOffer } from 'src/modules/promo-offers/entities/promo-offers.entity';
+import { TransportCompanyProduct } from 'src/modules/transport-companies/entities/transport-company-products.entity';
 
 @Entity()
 export class PromoOfferTransportProduct {
@@ -75,7 +76,23 @@ export class PromoOfferTransportProduct {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @ManyToOne(() => PromoOffer, (e) => e.promoOfferTransportProducts)
+  @ManyToOne(() => PromoOffer, (e) => e.promoOfferTransportProducts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'promo_offer_id' })
   promoOffer: PromoOffer;
+
+  @ManyToOne(
+    () => TransportCompanyProduct,
+    (e) => e.promoOfferTransportProducts,
+    {
+      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE',
+      orphanedRowAction: 'soft-delete',
+    },
+  )
+  @JoinColumn({ name: 'transport_product_id' })
+  transportCompanyProduct: TransportCompanyProduct;
 }

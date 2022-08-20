@@ -1,3 +1,5 @@
+import { OfferTransportProduct } from 'src/modules/offers/entities/offer-transport-products.entity';
+import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
 import {
   Entity,
   Column,
@@ -7,8 +9,10 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { TicketType } from './ticket-types.entity';
+import { TransportCompany } from './transport-companies.entity';
 
 @Entity()
 export class TransportCompanyProduct {
@@ -85,7 +89,28 @@ export class TransportCompanyProduct {
   })
   deletedAt: Date;
 
-  @ManyToOne(() => TicketType, (e) => e.transportCompanyProducts)
+  @ManyToOne(() => TicketType, (e) => e.transportCompanyProducts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'ticket_type_id' })
   ticketType: TicketType;
+
+  @ManyToOne(() => TransportCompany, (e) => e.transportCompanyProducts, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
+  @JoinColumn({ name: 'transport_company_id' })
+  transportCompany: TransportCompany;
+
+  @OneToMany(
+    () => PromoOfferTransportProduct,
+    (e) => e.transportCompanyProduct,
+    {
+      cascade: true,
+    },
+  )
+  promoOfferTransportProducts: PromoOfferTransportProduct[];
 }

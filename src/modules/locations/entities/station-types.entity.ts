@@ -31,6 +31,8 @@ export class StationType {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Station, (e) => e.stationType)
+  @OneToMany(() => Station, (e) => e.stationType, {
+    cascade: true,
+  })
   stations: Station[];
 }

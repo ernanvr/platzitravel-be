@@ -13,24 +13,24 @@ export class CreateStationDto {
   @MaxLength(85, {
     message: 'Name of station is too long',
   })
-  stationName: string;
+  readonly stationName: string;
 
   @IsString()
   @IsNotEmpty()
   @MaxLength(85, {
     message: 'Station code is too long',
   })
-  stationCode: string;
+  readonly stationCode: string;
 
   @IsNumber()
   @IsNotEmpty()
   @IsPositive()
-  stationTypeId: number;
+  readonly stationTypeId: number;
 
   @IsNumber()
   @IsNotEmpty()
   @IsPositive()
-  cityId: number;
+  readonly cityId: number;
 }
 
 export class UpdateStationDto extends PartialType(CreateStationDto) {}

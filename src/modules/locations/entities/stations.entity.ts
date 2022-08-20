@@ -55,18 +55,18 @@ export class Station {
   deletedAt: Date;
 
   @ManyToOne(() => StationType, (e) => e.stations, {
-    onDelete: 'CASCADE',
+    onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
-    orphanedRowAction: 'delete',
+    orphanedRowAction: 'soft-delete',
     nullable: false,
   })
   @JoinColumn({ name: 'station_type_id' })
   stationType: StationType;
 
   @ManyToOne(() => City, (e) => e.stations, {
-    onDelete: 'CASCADE',
+    onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
-    orphanedRowAction: 'delete',
+    orphanedRowAction: 'soft-delete',
     nullable: false,
   })
   @JoinColumn({ name: 'city_id' })

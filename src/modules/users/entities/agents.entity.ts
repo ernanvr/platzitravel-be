@@ -57,9 +57,13 @@ export class Agent {
   })
   deletedAt: Date;
 
-  @OneToMany(() => Contract, (contract) => contract.agent)
+  @OneToMany(() => Contract, (contract) => contract.agent, {
+    cascade: true,
+  })
   contracts: Contract[];
 
-  @OneToMany(() => Offer, (e) => e.agent)
+  @OneToMany(() => Offer, (e) => e.agent, {
+    cascade: true,
+  })
   offers: Offer[];
 }

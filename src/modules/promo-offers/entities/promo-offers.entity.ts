@@ -56,12 +56,18 @@ export class PromoOffer {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  @OneToMany(() => Offer, (e) => e.promoOffer)
+  @OneToMany(() => Offer, (e) => e.promoOffer, {
+    cascade: true,
+  })
   offers: Offer[];
 
-  @OneToMany(() => PromoOfferTransportProduct, (e) => e.promoOffer)
+  @OneToMany(() => PromoOfferTransportProduct, (e) => e.promoOffer, {
+    cascade: true,
+  })
   promoOfferTransportProducts: PromoOfferTransportProduct[];
 
-  @OneToMany(() => PromoOfferHotelProduct, (e) => e.promoOffer)
+  @OneToMany(() => PromoOfferHotelProduct, (e) => e.promoOffer, {
+    cascade: true,
+  })
   promoOfferHotelProducts: PromoOfferHotelProduct[];
 }

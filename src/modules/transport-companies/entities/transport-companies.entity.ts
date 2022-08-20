@@ -8,8 +8,10 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { CompanyType } from './company-types.entity';
+import { TransportCompanyProduct } from './transport-company-products.entity';
 
 @Entity()
 export class TransportCompany {
@@ -89,11 +91,24 @@ export class TransportCompany {
   })
   deletedAt: Date;
 
-  @ManyToOne(() => City, (e) => e.transportCompanies)
+  @ManyToOne(() => City, (e) => e.transportCompanies, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'city_id' })
   city: City;
 
-  @ManyToOne(() => CompanyType, (e) => e.transportCompanies)
+  @ManyToOne(() => CompanyType, (e) => e.transportCompanies, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
   @JoinColumn({ name: 'company_type_id' })
   companyType: CompanyType;
+
+  @OneToMany(() => TransportCompanyProduct, (e) => e.transportCompany, {
+    cascade: true,
+  })
+  transportCompanyProducts: TransportCompanyProduct[];
 }
