@@ -11,7 +11,7 @@ import {
 import {
   CreateTransportCompanyDto,
   UpdateTransportCompanyDto,
-} from '../dtos/transport-companies.dtos';
+} from '../dtos/transport-companies.dto';
 import { TransportCompaniesService } from '../services/transport-companies.service';
 import { TransportCompany } from '../entities/transport-companies.entity';
 import { DeleteResult } from 'typeorm';

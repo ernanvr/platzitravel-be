@@ -4,7 +4,7 @@ import { DeleteResult, Repository } from 'typeorm';
 import {
   CreateTransportCompanyDto,
   UpdateTransportCompanyDto,
-} from '../dtos/transport-companies.dtos';
+} from '../dtos/transport-companies.dto';
 import { TransportCompany } from '../entities/transport-companies.entity';
 
 @Injectable()

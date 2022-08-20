@@ -60,6 +60,7 @@ export class TransportCompany {
   @Column({
     nullable: false,
     type: 'boolean',
+    default: true,
   })
   active: boolean;
 

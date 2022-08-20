@@ -4,7 +4,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import {
   CreateCompanyTypeDto,
   UpdateCompanyTypeDto,
-} from '../dtos/company-types.dtos';
+} from '../dtos/company-types.dto';
 import { CompanyType } from '../entities/company-types.entity';
 
 @Injectable()

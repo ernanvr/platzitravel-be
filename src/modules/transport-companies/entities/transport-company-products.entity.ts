@@ -17,26 +17,31 @@ export class TransportCompanyProduct {
 
   @Column({
     name: 'transport_company_id',
+    nullable: false,
   })
   transportCompanyId: number;
 
   @Column({
     name: 'ticket_type_id',
+    nullable: false,
   })
   ticketTypeId: number;
 
   @Column({
     name: 'origin_id',
+    nullable: false,
   })
   originId: number;
 
   @Column({
     name: 'destination_id',
+    nullable: false,
   })
   destinationId: number;
 
   @Column({
     type: 'integer',
+    nullable: false,
   })
   quantity: number;
 
@@ -44,8 +49,16 @@ export class TransportCompanyProduct {
     type: 'decimal',
     precision: 2,
     scale: 2,
+    nullable: false,
   })
   price: number;
+
+  @Column({
+    type: 'boolean',
+    nullable: false,
+    default: true,
+  })
+  active: boolean;
 
   @Column({
     name: 'pictures_url',

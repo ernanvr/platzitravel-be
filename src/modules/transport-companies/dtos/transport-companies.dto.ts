@@ -34,8 +34,7 @@ export class CreateTransportCompanyDto {
   isPartner: boolean;
 
   @IsBoolean()
-  @IsNotEmpty()
-  active: boolean;
+  active?: boolean;
 
   @IsArray()
   @IsUrl({

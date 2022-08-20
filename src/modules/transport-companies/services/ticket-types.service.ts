@@ -4,7 +4,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import {
   CreateTicketTypeDto,
   UpdateTicketTypeDto,
-} from '../dtos/ticket-types.dtos';
+} from '../dtos/ticket-types.dto';
 import { TicketType } from '../entities/ticket-types.entity';
 
 @Injectable()

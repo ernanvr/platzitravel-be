@@ -18,6 +18,7 @@ export class TicketType {
     name: 'ticket_type',
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   ticketType: string;
 
