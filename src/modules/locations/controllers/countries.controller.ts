@@ -9,7 +9,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CountriesService } from '../services/countries.service';
-import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dtos';
+import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dto';
 
 @Controller('countries')
 export class CountriesController {

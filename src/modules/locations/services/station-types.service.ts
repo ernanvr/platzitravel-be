@@ -5,7 +5,7 @@ import { StationType } from '../entities/station-types.entity';
 import {
   CreateStationTypeDto,
   UpdateStationTypeDto,
-} from '../dtos/station-types.dtos';
+} from '../dtos/station-types.dto';
 
 @Injectable()
 export class StationTypesService {

@@ -1,9 +1,18 @@
-import { IsString, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsPositive,
+  MaxLength,
+} from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateCityDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(255, {
+    message: 'City name is too long',
+  })
   readonly cityName: string;
 
   @IsNumber()

@@ -9,27 +9,27 @@ import {
 
 export class CreateStationDto {
   @IsString()
+  @IsNotEmpty()
   @MaxLength(85, {
     message: 'Name of station is too long',
   })
-  @IsNotEmpty()
   stationName: string;
 
   @IsString()
+  @IsNotEmpty()
   @MaxLength(85, {
     message: 'Station code is too long',
   })
-  @IsNotEmpty()
   stationCode: string;
 
   @IsNumber()
-  @IsPositive()
   @IsNotEmpty()
+  @IsPositive()
   stationTypeId: number;
 
   @IsNumber()
-  @IsPositive()
   @IsNotEmpty()
+  @IsPositive()
   cityId: number;
 }
 

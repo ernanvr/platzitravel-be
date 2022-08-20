@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  DeleteDateColumn,
 } from 'typeorm';
 import { Station } from './stations.entity';
 
@@ -16,6 +17,7 @@ export class StationType {
   @Column({
     name: 'type_name',
     length: 50,
+    nullable: false,
   })
   stationTypeName: string;
 
@@ -25,6 +27,9 @@ export class StationType {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @OneToMany(() => Station, (e) => e.stationType)
   stations: Station[];

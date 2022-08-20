@@ -10,6 +10,7 @@ export class Country {
     name: 'country_code',
     type: 'varchar',
     length: 8,
+    nullable: false,
   })
   countryCode: string;
 
@@ -17,6 +18,7 @@ export class Country {
     name: 'country_name',
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   countryName: string;
 

@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  DeleteDateColumn,
 } from 'typeorm';
 import { City } from './cities.entity';
 import { StationType } from './station-types.entity';
@@ -19,6 +20,7 @@ export class Station {
     name: 'station_name',
     type: 'varchar',
     length: 85,
+    nullable: false,
   })
   stationName: string;
 
@@ -26,16 +28,19 @@ export class Station {
     name: 'station_code',
     type: 'varchar',
     length: 10,
+    nullable: false,
   })
   stationCode: string;
 
   @Column({
     name: 'station_type_id',
+    nullable: false,
   })
   stationTypeId: number;
 
   @Column({
     name: 'city_id',
+    nullable: false,
   })
   cityId: number;
 
@@ -45,6 +50,9 @@ export class Station {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne(() => StationType, (e) => e.stations, {
     onDelete: 'CASCADE',
