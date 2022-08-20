@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { StationTypesService } from '../services/station-types.service';
 import { StationType } from '../entities/station-types.entity';
+import { DeleteResult } from 'typeorm';
 
 import {
   CreateStationTypeDto,

@@ -1,4 +1,4 @@
-import { OfferTransportProduct } from 'src/modules/offers/entities/offer-transport-products.entity';
+import { Station } from 'src/modules/locations/entities/stations.entity';
 import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
 import {
   Entity,
@@ -104,6 +104,22 @@ export class TransportCompanyProduct {
   })
   @JoinColumn({ name: 'transport_company_id' })
   transportCompany: TransportCompany;
+
+  @ManyToOne(() => Station, (e) => e.transportCompanyProductsOrigin, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
+  @JoinColumn({ name: 'origin_id' })
+  origin: Station;
+
+  @ManyToOne(() => Station, (e) => e.transportCompanyProductsDestination, {
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE',
+    orphanedRowAction: 'soft-delete',
+  })
+  @JoinColumn({ name: 'destination_id' })
+  destination: Station;
 
   @OneToMany(
     () => PromoOfferTransportProduct,

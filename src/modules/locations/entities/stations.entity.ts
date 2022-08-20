@@ -1,3 +1,4 @@
+import { TransportCompanyProduct } from 'src/modules/transport-companies/entities/transport-company-products.entity';
 import {
   Entity,
   Column,
@@ -5,6 +6,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  OneToMany,
   JoinColumn,
   DeleteDateColumn,
 } from 'typeorm';
@@ -71,4 +73,10 @@ export class Station {
   })
   @JoinColumn({ name: 'city_id' })
   city: City;
+
+  @OneToMany(() => TransportCompanyProduct, (e) => e.origin)
+  transportCompanyProductsOrigin: TransportCompanyProduct[];
+
+  @OneToMany(() => TransportCompanyProduct, (e) => e.origin)
+  transportCompanyProductsDestination: TransportCompanyProduct[];
 }
