@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, MaxLength, IsBoolean } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 
 export class CreateAgentDto {
   @IsString()
@@ -24,6 +24,7 @@ export class CreateAgentDto {
   readonly lastname: string;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: true' })
   readonly active: boolean;
 }
 

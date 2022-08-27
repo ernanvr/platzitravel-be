@@ -8,11 +8,14 @@ import {
   Delete,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+
 import { CreateHotelDto, UpdateHotelDto } from '../dtos/hotels.dto';
 import { Hotel } from '../entities/hotels.entity';
 import { HotelsService } from '../services/hotels.service';
 
+@ApiTags('Hotels')
 @Controller('hotels')
 export class HotelsController {
   constructor(private hotelService: HotelsService) {}

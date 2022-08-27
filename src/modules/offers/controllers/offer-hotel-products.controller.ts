@@ -8,6 +8,7 @@ import {
   Param,
   Body,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
 import { OfferHotelProduct } from '../entities/offer-hotel-products.entity';
@@ -17,6 +18,7 @@ import {
   UpdateOfferHotelProductDto,
 } from '../dtos/offer-hotel-products.dto';
 
+@ApiTags('Offer hotel products')
 @Controller('offer-hotel-products')
 export class OfferHotelProductsController {
   constructor(private offerHotelProductsService: OfferHotelProductsService) {}

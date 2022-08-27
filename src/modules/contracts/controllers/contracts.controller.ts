@@ -3,7 +3,9 @@ import { DeleteResult } from 'typeorm';
 import { CreateContractDto, UpdateContractDto } from '../dtos/contracts.dto';
 import { Contract } from '../entities/contracts.entity';
 import { ContractsService } from '../services/contracts.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Contracts')
 @Controller('contracts')
 export class ContractsController {
   constructor(private contractsService: ContractsService) {}

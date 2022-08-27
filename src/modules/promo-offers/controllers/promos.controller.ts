@@ -8,7 +8,9 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+
 import {
   CreatePromoOfferDto,
   UpdatePromoOfferDto,
@@ -16,6 +18,7 @@ import {
 import { PromoOffer } from '../entities/promo-offers.entity';
 import { PromosService } from '../services/promos.service';
 
+@ApiTags('Promo offers')
 @Controller('promos')
 export class PromosController {
   constructor(private promosService: PromosService) {}

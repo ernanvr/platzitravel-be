@@ -8,14 +8,17 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+
 import {
   CreateTicketTypeDto,
   UpdateTicketTypeDto,
 } from '../dtos/ticket-types.dto';
 import { TicketType } from '../entities/ticket-types.entity';
-import { DeleteResult } from 'typeorm';
 import { TicketTypesService } from '../services/ticket-types.service';
 
+@ApiTags('Ticket types')
 @Controller('ticket-types')
 export class TicketTypesController {
   constructor(private ticketTypesService: TicketTypesService) {}

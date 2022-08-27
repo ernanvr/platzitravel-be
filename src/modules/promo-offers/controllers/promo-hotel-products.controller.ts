@@ -8,6 +8,7 @@ import {
   Delete,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PromoHotelProductsService } from '../services/promo-hotel-products.service';
 import { PromoOfferHotelProduct } from '../entities/promo-offer-hotel-products.entity';
 import {
@@ -16,6 +17,7 @@ import {
 } from '../dtos/promo-offers-hotel-products.dto';
 import { DeleteResult } from 'typeorm';
 
+@ApiTags('Promo offer hotel products')
 @Controller('promo-hotel-products')
 export class PromoHotelProductsController {
   constructor(private promoHotelProductsService: PromoHotelProductsService) {}

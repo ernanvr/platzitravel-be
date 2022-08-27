@@ -8,6 +8,8 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { StationTypesService } from '../services/station-types.service';
 import { StationType } from '../entities/station-types.entity';
 import { DeleteResult } from 'typeorm';
@@ -17,6 +19,7 @@ import {
   UpdateStationTypeDto,
 } from '../dtos/station-types.dto';
 
+@ApiTags('Station types')
 @Controller('station-types')
 export class StationTypesController {
   constructor(private stationTypesService: StationTypesService) {}

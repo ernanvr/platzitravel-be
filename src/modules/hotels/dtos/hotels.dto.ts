@@ -8,7 +8,7 @@ import {
   IsPositive,
   IsUrl,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateHotelDto {
   @IsString()
@@ -35,6 +35,7 @@ export class CreateHotelDto {
   readonly isPartner: boolean;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: true' })
   readonly active?: boolean; //default: true
 
   @IsArray()

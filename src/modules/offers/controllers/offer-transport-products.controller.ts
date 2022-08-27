@@ -8,7 +8,9 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+
 import {
   CreateOfferTransportProductDto,
   UpdateOfferTransportProductDto,
@@ -16,6 +18,7 @@ import {
 import { OfferTransportProduct } from '../entities/offer-transport-products.entity';
 import { OfferTransportProductsService } from '../services/offer-transport-products.service';
 
+@ApiTags('Offer transport products')
 @Controller('offer-transport-products')
 export class OfferTransportProductsController {
   constructor(

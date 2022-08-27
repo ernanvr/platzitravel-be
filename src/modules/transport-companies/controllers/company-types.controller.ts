@@ -8,14 +8,17 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+
 import {
   CreateCompanyTypeDto,
   UpdateCompanyTypeDto,
 } from '../dtos/company-types.dto';
 import { CompanyType } from '../entities/company-types.entity';
 import { CompanyTypesService } from '../services/company-types.service';
-import { DeleteResult } from 'typeorm';
 
+@ApiTags('Company types')
 @Controller('company-types')
 export class CompanyTypesController {
   constructor(private companyTypesService: CompanyTypesService) {}

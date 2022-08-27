@@ -7,7 +7,7 @@ import {
   IsDate,
   IsBoolean,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 
 export class CreateOfferDto {
   @IsNumber()
@@ -51,6 +51,7 @@ export class CreateOfferDto {
   readonly timeAccepted?: boolean;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: false' })
   readonly accepted?: boolean;
 }
 

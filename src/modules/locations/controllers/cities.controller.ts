@@ -8,9 +8,12 @@ import {
   Delete,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { CitiesService } from '../services/cities.service';
 import { CreateCityDto, UpdateCityDto } from '../dtos/cities.dto';
 
+@ApiTags('Cities')
 @Controller('cities')
 export class CitiesController {
   constructor(private cityService: CitiesService) {}

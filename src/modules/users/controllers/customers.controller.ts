@@ -7,6 +7,9 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+
 import { Customer } from '../entities/customer.entity';
 import { CustomersService } from 'src/modules/users/services/customers.service';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
@@ -14,8 +17,8 @@ import {
   CreateCustomerDto,
   UpdateCustomerDto,
 } from 'src/modules/users/dtos/customers.dto';
-import { DeleteResult } from 'typeorm';
 
+@ApiTags('Customers')
 @Controller('customers')
 export class CustomersController {
   constructor(private customersService: CustomersService) {}

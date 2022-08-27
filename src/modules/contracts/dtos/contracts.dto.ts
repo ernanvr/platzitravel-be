@@ -7,7 +7,7 @@ import {
   MaxLength,
   IsPositive,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateContractDto {
   @IsString()
@@ -44,6 +44,7 @@ export class CreateContractDto {
   readonly paymentDate?: Date;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: false' })
   readonly paid?: boolean; //default: false
 
   @IsDate()
@@ -54,6 +55,7 @@ export class CreateContractDto {
   readonly paymentAmount?: number;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: false' })
   readonly refunded?: boolean; //default: false
 
   @IsDate()

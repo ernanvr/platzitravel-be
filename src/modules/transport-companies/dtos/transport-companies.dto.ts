@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import {
   IsString,
   IsNumber,
@@ -34,6 +34,7 @@ export class CreateTransportCompanyDto {
   isPartner: boolean;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: true' })
   active?: boolean;
 
   @IsArray()

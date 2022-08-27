@@ -8,6 +8,8 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import {
   CreateHotelProductDto,
   UpdateHotelProductDto,
@@ -15,6 +17,7 @@ import {
 import { HotelProduct } from '../entities/hotel-products.entity';
 import { HotelProductsService } from '../services/hotel-products.service';
 
+@ApiTags('Hotel products')
 @Controller('hotel-products')
 export class HotelProductsController {
   constructor(private hotelProductService: HotelProductsService) {}

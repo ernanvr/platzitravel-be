@@ -8,14 +8,17 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+
 import {
   CreateTransportCompanyProductDto,
   UpdateTransportCompanyProductDto,
 } from '../dtos/transport-company-products.dto';
 import { TransportCompanyProduct } from '../entities/transport-company-products.entity';
 import { TransportCompanyProductsService } from '../services/transport-company-products.service';
-import { DeleteResult } from 'typeorm';
 
+@ApiTags('Transport company products')
 @Controller('transport-company-products')
 export class TransportCompanyProductsController {
   constructor(

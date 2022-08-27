@@ -8,11 +8,14 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+
 import { CreateStationDto, UpdateStationDto } from '../dtos/stations.dto';
 import { Station } from '../entities/stations.entity';
 import { StationsService } from '../services/stations.service';
 
+@ApiTags('Stations')
 @Controller('stations')
 export class StationsController {
   constructor(private stationsService: StationsService) {}

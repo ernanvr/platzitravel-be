@@ -8,11 +8,14 @@ import {
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+
 import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dto';
 import { RoomType } from '../entities/room-types.entity';
 import { RoomTypesService } from '../services/room-types.service';
 
+@ApiTags('Room types')
 @Controller('room-types')
 export class RoomTypesController {
   constructor(private roomTypeService: RoomTypesService) {}

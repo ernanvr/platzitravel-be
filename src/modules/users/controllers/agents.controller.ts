@@ -8,11 +8,14 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { DeleteResult } from 'typeorm';
+
 import { AgentsService } from '../services/agents.service';
 import { Agent } from '../entities/agents.entity';
 import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
-import { DeleteResult } from 'typeorm';
 
+@ApiTags('Agents')
 @Controller('agents')
 export class AgentsController {
   constructor(private agentService: AgentsService) {}

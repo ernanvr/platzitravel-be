@@ -7,7 +7,7 @@ import {
   IsArray,
   IsUrl,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 
 export class CreateHotelProductDto {
   @IsNumber()
@@ -34,6 +34,7 @@ export class CreateHotelProductDto {
   readonly details?: string;
 
   @IsBoolean()
+  @ApiProperty({ description: 'Default: boolean' })
   readonly active?: boolean; //default: true
 
   @IsArray()

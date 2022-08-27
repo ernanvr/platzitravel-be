@@ -8,9 +8,12 @@ import {
   Body,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { CountriesService } from '../services/countries.service';
 import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dto';
 
+@ApiTags('Countries')
 @Controller('countries')
 export class CountriesController {
   constructor(private countryService: CountriesService) {}
