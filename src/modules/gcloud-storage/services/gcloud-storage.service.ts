@@ -37,7 +37,7 @@ export class GcloudStorageService {
 
     return {
       filename,
-      url: `https://storage.googleapis.com/${this.configuration.gcloud.bucket}/${filename}`,
+      url: `https://storage.googleapis.com/${this.bucket}/${filename}`,
       bucket: this.bucket,
     };
   }
