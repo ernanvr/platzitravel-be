@@ -1,12 +1,4 @@
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsPositive,
-  IsBoolean,
-  IsArray,
-  MaxLength,
-  IsUrl,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsPositive, IsBoolean } from 'class-validator';
 import { PartialType } from '@nestjs/swagger';
 
 export class CreateTransportCompanyProductDto {
@@ -42,16 +34,6 @@ export class CreateTransportCompanyProductDto {
 
   @IsBoolean()
   active?: boolean;
-
-  @IsArray()
-  @IsUrl({
-    each: true,
-  })
-  @MaxLength(255, {
-    message: 'Url is too long',
-    each: true,
-  })
-  picturesUrl?: Array<string>;
 }
 export class UpdateTransportCompanyProductDto extends PartialType(
   CreateTransportCompanyProductDto,

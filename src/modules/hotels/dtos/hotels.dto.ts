@@ -4,9 +4,7 @@ import {
   IsNumber,
   IsBoolean,
   MaxLength,
-  IsArray,
   IsPositive,
-  IsUrl,
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 
@@ -37,12 +35,6 @@ export class CreateHotelDto {
   @IsBoolean()
   @ApiProperty({ description: 'Default: true' })
   readonly active?: boolean; //default: true
-
-  @IsArray()
-  @IsUrl({
-    each: true,
-  })
-  readonly picturesUrl?: string[];
 }
 
 export class UpdateHotelDto extends PartialType(CreateHotelDto) {}

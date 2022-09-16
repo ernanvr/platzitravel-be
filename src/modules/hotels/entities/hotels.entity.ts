@@ -58,14 +58,6 @@ export class Hotel {
   })
   active: boolean;
 
-  @Column({
-    name: 'pictures_url',
-    array: true,
-    type: 'varchar',
-    nullable: true,
-  })
-  picturesUrl: string[];
-
   ///////////////////////////////
   @CreateDateColumn({
     name: 'created_at',

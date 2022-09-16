@@ -1,13 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import {
-  IsString,
-  IsNumber,
-  IsNotEmpty,
-  IsBoolean,
-  IsArray,
-  IsUrl,
-  MaxLength,
-} from 'class-validator';
+import { IsString, IsNumber, IsNotEmpty, IsBoolean } from 'class-validator';
 
 export class CreateTransportCompanyDto {
   @IsString()
@@ -36,16 +28,6 @@ export class CreateTransportCompanyDto {
   @IsBoolean()
   @ApiProperty({ description: 'Default: true' })
   active?: boolean;
-
-  @IsArray()
-  @IsUrl({
-    each: true,
-  })
-  @MaxLength(255, {
-    message: 'Url is too long',
-    each: true,
-  })
-  picturesUrl: string[];
 }
 
 export class UpdateTransportCompanyDto extends PartialType(

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigType } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Joi from 'joi';
 
@@ -10,13 +10,14 @@ import { HotelsModule } from './modules/hotels/hotels.module';
 import { LocationsModule } from './modules/locations/locations.module';
 import { UsersModule } from './modules/users/users.module';
 import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
-import { enviroments } from './config/enviroments';
+// import { enviroments } from './config/enviroments';
+import { GcloudStorageModule } from './modules/gcloud-storage/gcloud-storage.module';
+import config from './config/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: enviroments[process.env.NODE_ENV],
-      isGlobal: true,
+      load: [config],
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('dev', 'test', 'prod').required(),
         DATABASE_PORT: Joi.number().positive().required(),
@@ -25,17 +26,17 @@ import { enviroments } from './config/enviroments';
         DATABASE_PASSWORD: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
       }),
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+      inject: [config.KEY],
+      useFactory: async (configuration: ConfigType<typeof config>) => ({
         type: 'postgres' as const,
-        host: configService.get<string>('DATABASE_HOST'),
-        port: configService.get<number>('DATABASE_PORT'),
-        username: configService.get<string>('DATABASE_USERNAME'),
-        password: configService.get<string>('DATABASE_PASSWORD'),
-        database: configService.get<string>('DATABASE_NAME'),
+        host: configuration.database.host,
+        port: configuration.database.port,
+        username: configuration.database.username,
+        password: configuration.database.password,
+        database: configuration.database.name,
         entities: [],
         synchronize: true,
         autoLoadEntities: true,
@@ -48,6 +49,7 @@ import { enviroments } from './config/enviroments';
     HotelsModule,
     LocationsModule,
     UsersModule,
+    GcloudStorageModule,
   ],
 })
 export class AppModule {}

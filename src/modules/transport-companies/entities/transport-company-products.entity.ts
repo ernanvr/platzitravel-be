@@ -64,15 +64,6 @@ export class TransportCompanyProduct {
   })
   active: boolean;
 
-  @Column({
-    name: 'pictures_url',
-    type: 'varchar',
-    array: true,
-    length: 255,
-    nullable: true,
-  })
-  picturesUrl: Array<string>;
-
   ///////////////////////////////
   @CreateDateColumn({
     name: 'created_at',

@@ -40,6 +40,11 @@ export class TransportCompaniesController {
     return this.transportCompaniesService.create(payload);
   }
 
+  @Post('images')
+  uploadImage() {
+    return {};
+  }
+
   @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,

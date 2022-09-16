@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common'; //adding Validation layer
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-
-import { AppModule } from './app.module';
+import { contentParser } from 'fastify-multer';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -27,8 +28,10 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('docs', app, document);
 
+  await app.register(contentParser);
   await app.listen(3000);
 }
 
