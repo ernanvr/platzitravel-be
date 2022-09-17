@@ -19,7 +19,10 @@ import { OfferTransportProduct } from '../entities/offer-transport-products.enti
 import { OfferTransportProductsService } from '../services/offer-transport-products.service';
 
 @ApiTags('Offer transport products')
-@Controller('offer-transport-products')
+@Controller({
+  path: 'offer-transport-products',
+  version: '1',
+})
 export class OfferTransportProductsController {
   constructor(
     private offerTransportProductsService: OfferTransportProductsService,

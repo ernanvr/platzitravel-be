@@ -16,7 +16,10 @@ import { Agent } from '../entities/agents.entity';
 import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
 
 @ApiTags('Agents')
-@Controller('agents')
+@Controller({
+  path: 'agents',
+  version: '1',
+})
 export class AgentsController {
   constructor(private agentService: AgentsService) {}
 

@@ -19,7 +19,10 @@ import { TransportCompaniesService } from '../services/transport-companies.servi
 import { TransportCompany } from '../entities/transport-companies.entity';
 
 @ApiTags('Transport companies')
-@Controller('transport-companies')
+@Controller({
+  path: 'transport-companies',
+  version: '1',
+})
 export class TransportCompaniesController {
   constructor(private transportCompaniesService: TransportCompaniesService) {}
 

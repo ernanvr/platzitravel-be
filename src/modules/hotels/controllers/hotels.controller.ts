@@ -16,7 +16,10 @@ import { Hotel } from '../entities/hotels.entity';
 import { HotelsService } from '../services/hotels.service';
 
 @ApiTags('Hotels')
-@Controller('hotels')
+@Controller({
+  path: 'hotels',
+  version: '1',
+})
 export class HotelsController {
   constructor(private hotelService: HotelsService) {}
   @Get()

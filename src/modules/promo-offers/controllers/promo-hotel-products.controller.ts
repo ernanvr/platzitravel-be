@@ -18,7 +18,10 @@ import {
 import { DeleteResult } from 'typeorm';
 
 @ApiTags('Promo offer hotel products')
-@Controller('promo-hotel-products')
+  @Controller({
+    path: 'promo-hotel-products',
+    version: '1'
+})
 export class PromoHotelProductsController {
   constructor(private promoHotelProductsService: PromoHotelProductsService) {}
 

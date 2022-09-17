@@ -16,7 +16,10 @@ import { Offer } from '../entities/offers.entity';
 import { OffersService } from '../services/offers.service';
 
 @ApiTags('Offers')
-@Controller('offers')
+@Controller({
+  path: 'offers',
+  version: '1',
+})
 export class OffersController {
   constructor(private offersService: OffersService) {}
 

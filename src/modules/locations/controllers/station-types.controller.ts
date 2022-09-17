@@ -20,7 +20,10 @@ import {
 } from '../dtos/station-types.dto';
 
 @ApiTags('Station types')
-@Controller('station-types')
+@Controller({
+  path: 'station-types',
+  version: '1',
+})
 export class StationTypesController {
   constructor(private stationTypesService: StationTypesService) {}
 

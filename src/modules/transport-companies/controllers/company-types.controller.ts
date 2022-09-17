@@ -19,7 +19,10 @@ import { CompanyType } from '../entities/company-types.entity';
 import { CompanyTypesService } from '../services/company-types.service';
 
 @ApiTags('Company types')
-@Controller('company-types')
+@Controller({
+  path: 'company-types',
+  version: '1',
+})
 export class CompanyTypesController {
   constructor(private companyTypesService: CompanyTypesService) {}
 

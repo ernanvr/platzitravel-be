@@ -19,7 +19,10 @@ import { PromoOffer } from '../entities/promo-offers.entity';
 import { PromosService } from '../services/promos.service';
 
 @ApiTags('Promo offers')
-@Controller('promos')
+@Controller({
+  path: 'promos',
+  version: '1',
+})
 export class PromosController {
   constructor(private promosService: PromosService) {}
 

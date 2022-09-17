@@ -16,7 +16,10 @@ import { RoomType } from '../entities/room-types.entity';
 import { RoomTypesService } from '../services/room-types.service';
 
 @ApiTags('Room types')
-@Controller('room-types')
+@Controller({
+  path: 'room-types',
+  version: '1',
+})
 export class RoomTypesController {
   constructor(private roomTypeService: RoomTypesService) {}
 

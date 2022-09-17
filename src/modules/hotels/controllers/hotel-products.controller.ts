@@ -18,7 +18,10 @@ import { HotelProduct } from '../entities/hotel-products.entity';
 import { HotelProductsService } from '../services/hotel-products.service';
 
 @ApiTags('Hotel products')
-@Controller('hotel-products')
+@Controller({
+  path: 'hotel-products',
+  version: '1',
+})
 export class HotelProductsController {
   constructor(private hotelProductService: HotelProductsService) {}
 

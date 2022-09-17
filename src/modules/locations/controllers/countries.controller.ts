@@ -14,7 +14,10 @@ import { CountriesService } from '../services/countries.service';
 import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dto';
 
 @ApiTags('Countries')
-@Controller('countries')
+@Controller({
+  path: 'countries',
+  version: '1',
+})
 export class CountriesController {
   constructor(private countryService: CountriesService) {}
 

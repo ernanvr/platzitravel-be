@@ -19,7 +19,10 @@ import {
 } from 'src/modules/users/dtos/customers.dto';
 
 @ApiTags('Customers')
-@Controller('customers')
+@Controller({
+  path: 'customers',
+  version: '1',
+})
 export class CustomersController {
   constructor(private customersService: CustomersService) {}
 

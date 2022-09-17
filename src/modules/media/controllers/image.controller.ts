@@ -10,11 +10,14 @@ import { FastifyFilesInterceptor } from '../fatify-upload/files-interceptor';
 import Multer = require('multer');
 import { imageFileFilter } from '../utils/file-upload-utils';
 
-@Controller('gcloud')
+@Controller({
+  path: 'images',
+  version: '1',
+})
 export class ImageController {
   constructor(private imageService: ImageService) {}
 
-  @Post('uploadFiles')
+  @Post('upload')
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(
     FastifyFilesInterceptor('photo_url', 10, {

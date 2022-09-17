@@ -6,7 +6,10 @@ import { ContractsService } from '../services/contracts.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Contracts')
-@Controller('contracts')
+@Controller({
+  path: 'contracts',
+  version: '1',
+})
 export class ContractsController {
   constructor(private contractsService: ContractsService) {}
 

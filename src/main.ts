@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common'; //adding Validation layer
+import { ValidationPipe, VersioningType } from '@nestjs/common'; //adding Validation layer
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { contentParser } from 'fastify-multer';
 import {
@@ -21,7 +21,10 @@ async function bootstrap() {
     }),
   ); //creating instance of validation class
 
-  //swagger documentation
+  app.setGlobalPrefix('api');
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
   const config = new DocumentBuilder()
     .setTitle('Platzitravel API')
     .setDescription('Platzitravel API description')

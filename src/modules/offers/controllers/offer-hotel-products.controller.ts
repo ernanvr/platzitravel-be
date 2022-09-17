@@ -19,7 +19,10 @@ import {
 } from '../dtos/offer-hotel-products.dto';
 
 @ApiTags('Offer hotel products')
-@Controller('offer-hotel-products')
+@Controller({
+  path: 'offer-hotel-products',
+  version: '1',
+})
 export class OfferHotelProductsController {
   constructor(private offerHotelProductsService: OfferHotelProductsService) {}
 
