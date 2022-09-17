@@ -4,16 +4,23 @@ import { ConfigType } from '@nestjs/config';
 import config from 'src/config/config';
 import { changeFileName } from '../utils/file-upload-utils';
 import stream = require('stream');
-import { responseFileInterface } from '../interfaces/response.interfaces';
+import {
+  FileJsonResponse,
+  ImageRequest,
+} from '../interfaces/response.interfaces';
+import { Image } from '../entities/image.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class GcloudStorageService {
+export class ImageService {
   private storage: Storage;
   private bucket: string;
 
   constructor(
     @Inject(config.KEY)
     private configuration: ConfigType<typeof config>,
+    @InjectRepository(Image) private imageService: Repository<Image>,
   ) {
     this.storage = new Storage({
       projectId: configuration.gcloud.projectId,
@@ -26,7 +33,7 @@ export class GcloudStorageService {
     this.bucket = configuration.gcloud.bucket;
   }
 
-  uploadFile(file: Express.Multer.File): responseFileInterface {
+  uploadFile(file: Express.Multer.File): FileJsonResponse {
     const filename: string = changeFileName(file.originalname);
 
     const blob: File = this.storage.bucket(this.bucket).file(filename);
@@ -37,12 +44,33 @@ export class GcloudStorageService {
 
     return {
       filename,
-      url: `https://storage.googleapis.com/${this.bucket}/${filename}`,
+      url: blob.publicUrl(),
       bucket: this.bucket,
     };
   }
 
-  async delete(url: string[]) {
-    return { url };
+  uploadFiles(files: Express.Multer.File[]): FileJsonResponse[] {
+    const images: ImageRequest[] = files.map((file) => {
+      return {
+        filename: changeFileName(file.originalname),
+        buffer: file.buffer,
+      };
+    });
+
+    const response: FileJsonResponse[] = images.map((image) => {
+      const blob = this.storage.bucket(this.bucket).file(image.filename);
+      const passThroughStream = new stream.PassThrough();
+      passThroughStream.write(image.buffer);
+      passThroughStream.end();
+      passThroughStream.pipe(blob.createWriteStream());
+
+      return {
+        filename: image.filename,
+        url: blob.publicUrl(),
+        bucket: this.bucket,
+      };
+    });
+
+    return response;
   }
 }

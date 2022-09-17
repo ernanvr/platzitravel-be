@@ -1,3 +1,4 @@
+import { Image } from 'src/modules/media/entities/image.entity';
 import { City } from 'src/modules/locations/entities/cities.entity';
 import {
   Entity,
@@ -102,4 +103,9 @@ export class TransportCompany {
     cascade: true,
   })
   transportCompanyProducts: TransportCompanyProduct[];
+
+  @OneToMany(() => Image, (e) => e.transportCompanyProduct, {
+    cascade: true,
+  })
+  images: Image[];
 }

@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GcloudStorageService } from '../services/gcloud-storage.service';
+import { GcloudStorageService } from '../services/image.service';
 
 describe('GcloudStorageService', () => {
   let service: GcloudStorageService;

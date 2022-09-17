@@ -11,7 +11,7 @@ import { LocationsModule } from './modules/locations/locations.module';
 import { UsersModule } from './modules/users/users.module';
 import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 // import { enviroments } from './config/enviroments';
-import { GcloudStorageModule } from './modules/gcloud-storage/gcloud-storage.module';
+import { MediaModule } from './modules/media/media.module';
 import config from './config/config';
 
 @Module({
@@ -49,7 +49,7 @@ import config from './config/config';
     HotelsModule,
     LocationsModule,
     UsersModule,
-    GcloudStorageModule,
+    MediaModule,
   ],
 })
 export class AppModule {}

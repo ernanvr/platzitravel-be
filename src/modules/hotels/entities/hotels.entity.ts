@@ -11,6 +11,7 @@ import {
 } from 'typeorm';
 import { City } from 'src/modules/locations/entities/cities.entity';
 import { HotelProduct } from './hotel-products.entity';
+import { Image } from 'src/modules/media/entities/image.entity';
 
 @Entity()
 export class Hotel {
@@ -84,4 +85,9 @@ export class Hotel {
     cascade: true,
   })
   hotelProducts: HotelProduct[];
+
+  @OneToMany(() => Image, (e) => e.hotel, {
+    cascade: true,
+  })
+  images: Image[];
 }

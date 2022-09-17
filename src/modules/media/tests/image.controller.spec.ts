@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { GCloudController } from '../controllers/controllers.controller';
+import { GCloudController } from '../controllers/image.controller';
 
 describe('ControllersController', () => {
   let controller: GCloudController;

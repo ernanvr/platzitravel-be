@@ -1,3 +1,4 @@
+import { Image } from 'src/modules/media/entities/image.entity';
 import { Station } from 'src/modules/locations/entities/stations.entity';
 import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
 import {
@@ -120,4 +121,9 @@ export class TransportCompanyProduct {
     },
   )
   promoOfferTransportProducts: PromoOfferTransportProduct[];
+
+  @OneToMany(() => Image, (e) => e.transportCompanyProduct, {
+    cascade: true,
+  })
+  images: Image[];
 }
