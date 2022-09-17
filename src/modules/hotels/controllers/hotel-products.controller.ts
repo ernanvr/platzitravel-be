@@ -40,7 +40,7 @@ export class HotelProductsController {
     return this.hotelProductService.create(payload);
   }
 
-  @Put('id')
+  @Put(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() payload: UpdateHotelProductDto,

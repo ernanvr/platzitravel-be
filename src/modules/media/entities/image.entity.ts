@@ -23,28 +23,49 @@ export class Image {
     type: 'integer',
     nullable: true,
   })
-  hotelId: number;
+  hotelId?: number;
 
   @Column({
     name: 'hotel_product_id',
     type: 'integer',
     nullable: true,
   })
-  hotelProductId: number;
+  hotelProductId?: number;
 
   @Column({
     name: 'transport_company_id',
     type: 'integer',
     nullable: true,
   })
-  transportCompanyId: number;
+  transportCompanyId?: number;
 
   @Column({
     name: 'transport_company_product_id',
     type: 'integer',
     nullable: true,
   })
-  transportCompanyProductId: number;
+  transportCompanyProductId?: number;
+
+  @Column({
+    type: 'varchar',
+    length: 100,
+    nullable: false,
+  })
+  filename: string;
+
+  @Column({
+    type: 'varchar',
+    length: 254,
+    nullable: false,
+  })
+  url: string;
+
+  @Column({
+    type: 'varchar',
+    length: 100,
+    nullable: false,
+  })
+  bucket: string;
 
   //
   @CreateDateColumn()

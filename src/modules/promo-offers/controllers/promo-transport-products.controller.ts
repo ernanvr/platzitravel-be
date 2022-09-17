@@ -19,9 +19,9 @@ import {
 } from '../dtos/promo-offers-transport-products.dto';
 
 @ApiTags('Promo offer transport products')
-  @Controller({
-    path: 'promo-transport-products',
-    version: '1'
+@Controller({
+  path: 'promo-transport-products',
+  version: '1',
 })
 export class PromoTransportProductsController {
   constructor(

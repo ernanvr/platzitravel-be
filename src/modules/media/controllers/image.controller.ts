@@ -1,14 +1,21 @@
 import {
+  Body,
+  Get,
   Controller,
   Post,
   UploadedFiles,
   UseInterceptors,
+  Param,
+  Delete,
 } from '@nestjs/common';
+import { ParseIntPipe } from '@nestjs/common';
+
 import { ApiConsumes } from '@nestjs/swagger';
 import { ImageService } from '../services/image.service';
 import { FastifyFilesInterceptor } from '../fatify-upload/files-interceptor';
 import Multer = require('multer');
 import { imageFileFilter } from '../utils/file-upload-utils';
+import { CreateImageDto } from '../dtos/image.dto';
 
 @Controller({
   path: 'images',
@@ -16,6 +23,16 @@ import { imageFileFilter } from '../utils/file-upload-utils';
 })
 export class ImageController {
   constructor(private imageService: ImageService) {}
+
+  @Get()
+  getAll() {
+    return this.imageService.findAll();
+  }
+
+  @Get(':id')
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    return this.imageService.findOne(id);
+  }
 
   @Post('upload')
   @ApiConsumes('multipart/form-data')
@@ -25,7 +42,15 @@ export class ImageController {
       fileFilter: imageFileFilter,
     }),
   )
-  uploadFiles(@UploadedFiles() files: Express.Multer.File[]) {
-    return this.imageService.uploadFiles(files);
+  uploadFiles(
+    @UploadedFiles() files: Express.Multer.File[],
+    @Body() payload: CreateImageDto,
+  ) {
+    return this.imageService.uploadFiles(files, payload);
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.imageService.delete(id);
   }
 }

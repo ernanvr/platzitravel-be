@@ -1,16 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { File, Storage } from '@google-cloud/storage';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Storage } from '@google-cloud/storage';
 import { ConfigType } from '@nestjs/config';
 import config from 'src/config/config';
 import { changeFileName } from '../utils/file-upload-utils';
 import stream = require('stream');
-import {
-  FileJsonResponse,
-  ImageRequest,
-} from '../interfaces/response.interfaces';
+import { ImageRequest } from '../interfaces/response.interfaces';
 import { Image } from '../entities/image.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateImageDto } from '../dtos/image.dto';
 
 @Injectable()
 export class ImageService {
@@ -20,7 +18,7 @@ export class ImageService {
   constructor(
     @Inject(config.KEY)
     private configuration: ConfigType<typeof config>,
-    @InjectRepository(Image) private imageService: Repository<Image>,
+    @InjectRepository(Image) private imageRepository: Repository<Image>,
   ) {
     this.storage = new Storage({
       projectId: configuration.gcloud.projectId,
@@ -33,23 +31,26 @@ export class ImageService {
     this.bucket = configuration.gcloud.bucket;
   }
 
-  uploadFile(file: Express.Multer.File): FileJsonResponse {
-    const filename: string = changeFileName(file.originalname);
-
-    const blob: File = this.storage.bucket(this.bucket).file(filename);
-    const passThroughStream = new stream.PassThrough();
-    passThroughStream.write(file.buffer);
-    passThroughStream.end();
-    passThroughStream.pipe(blob.createWriteStream());
-
-    return {
-      filename,
-      url: blob.publicUrl(),
-      bucket: this.bucket,
-    };
+  findAll() {
+    return this.imageRepository.find();
   }
 
-  uploadFiles(files: Express.Multer.File[]): FileJsonResponse[] {
+  async findOne(id: number) {
+    const image = await this.imageRepository.findOne({
+      where: { id },
+    });
+
+    if (!image) {
+      throw new NotFoundException(`Image id ${id} wasn't found`);
+    }
+
+    return image;
+  }
+
+  uploadFiles(
+    files: Express.Multer.File[],
+    payload: CreateImageDto,
+  ): Promise<Image | Image[]> {
     const images: ImageRequest[] = files.map((file) => {
       return {
         filename: changeFileName(file.originalname),
@@ -57,7 +58,7 @@ export class ImageService {
       };
     });
 
-    const response: FileJsonResponse[] = images.map((image) => {
+    const response = images.map((image) => {
       const blob = this.storage.bucket(this.bucket).file(image.filename);
       const passThroughStream = new stream.PassThrough();
       passThroughStream.write(image.buffer);
@@ -65,12 +66,24 @@ export class ImageService {
       passThroughStream.pipe(blob.createWriteStream());
 
       return {
+        ...payload,
         filename: image.filename,
         url: blob.publicUrl(),
         bucket: this.bucket,
       };
     });
 
-    return response;
+    const newImages = this.imageRepository.create(response);
+
+    return this.imageRepository.save(newImages);
+  }
+
+  async delete(id: number) {
+    const image = await this.findOne(id);
+    this.storage
+      .bucket(image.bucket)
+      .file(image.filename)
+      .delete({ ignoreNotFound: true });
+    return this.imageRepository.delete(id);
   }
 }

@@ -1,38 +1,20 @@
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsPositive,
-  IsString,
-  IsUrl,
-} from 'class-validator';
+import { IsOptional } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 export class CreateImageDto {
-  @IsNumber()
-  @IsPositive()
-  readonly hotelId: number;
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  readonly hotelId?: number;
 
-  @IsNumber()
-  @IsPositive()
-  readonly hotelProductId: number;
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  readonly hotelProductId?: number;
 
-  @IsNumber()
-  @IsPositive()
-  readonly transportCompanyId: number;
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  readonly transportCompanyId?: number;
 
-  @IsNumber()
-  @IsPositive()
-  readonly transportCompanyProductId: number;
-
-  @IsNotEmpty()
-  @IsString()
-  readonly filename: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @IsUrl()
-  readonly url: string;
-
-  @IsNotEmpty()
-  @IsString()
-  readonly bucket: string;
+  @IsOptional()
+  @Transform(({ value }) => parseInt(value))
+  readonly transportCompanyProductId?: number;
 }

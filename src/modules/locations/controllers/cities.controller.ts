@@ -14,9 +14,9 @@ import { CitiesService } from '../services/cities.service';
 import { CreateCityDto, UpdateCityDto } from '../dtos/cities.dto';
 
 @ApiTags('Cities')
-  @Controller({
-    path: 'cities',
-    version: '1',
+@Controller({
+  path: 'cities',
+  version: '1',
 })
 export class CitiesController {
   constructor(private cityService: CitiesService) {}

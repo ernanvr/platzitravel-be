@@ -19,9 +19,9 @@ import { TicketType } from '../entities/ticket-types.entity';
 import { TicketTypesService } from '../services/ticket-types.service';
 
 @ApiTags('Ticket types')
-  @Controller({
-    path: 'ticket-types',
-    version: '1'
+@Controller({
+  path: 'ticket-types',
+  version: '1',
 })
 export class TicketTypesController {
   constructor(private ticketTypesService: TicketTypesService) {}
