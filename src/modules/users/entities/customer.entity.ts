@@ -1,5 +1,5 @@
-import { Contract } from 'src/modules/contracts/entities/contracts.entity';
-import { Offer } from 'src/modules/offers/entities/offers.entity';
+import { Contract } from '../../contracts/entities/contracts.entity';
+import { Offer } from '../../offers/entities/offers.entity';
 import {
   Entity,
   Column,

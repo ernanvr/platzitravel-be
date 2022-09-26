@@ -1,4 +1,4 @@
-import { TransportCompanyProduct } from 'src/modules/transport-companies/entities/transport-company-products.entity';
+import { TransportCompanyProduct } from '../../transport-companies/entities/transport-company-products.entity';
 import {
   Entity,
   Column,

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigType } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Joi from 'joi';
 
@@ -13,6 +13,7 @@ import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 // import { enviroments } from './config/enviroments';
 import { MediaModule } from './modules/media/media.module';
 import config from './config/config';
+import { typeOrmAsyncConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
@@ -28,20 +29,7 @@ import config from './config/config';
       }),
       isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [config.KEY],
-      useFactory: async (configuration: ConfigType<typeof config>) => ({
-        type: 'postgres' as const,
-        host: configuration.database.host,
-        port: configuration.database.port,
-        username: configuration.database.username,
-        password: configuration.database.password,
-        database: configuration.database.name,
-        entities: ['src/**/**.entity{.ts,.js}'],
-        migrations: ['src/database/migrations/*.{.ts,.js}'],
-        autoLoadEntities: true,
-      }),
-    }),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     TransportCompaniesModule,
     PromoOffersModule,
     OffersModule,

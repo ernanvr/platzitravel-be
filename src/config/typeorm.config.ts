@@ -17,8 +17,9 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: configuration.database.username,
       password: configuration.database.password,
       database: configuration.database.name,
-      entities: ['src/modules/**/entities/*.entity{.ts,.js}'],
+      entities: [],
       migrations: ['src/database/migrations/*.{.ts,.js}'],
+      synchronize: false,
       autoLoadEntities: true,
     };
   },

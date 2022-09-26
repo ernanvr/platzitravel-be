@@ -1,7 +1,7 @@
-import { HotelProduct } from 'src/modules/hotels/entities/hotel-products.entity';
-import { Hotel } from 'src/modules/hotels/entities/hotels.entity';
-import { TransportCompany } from 'src/modules/transport-companies/entities/transport-companies.entity';
-import { TransportCompanyProduct } from 'src/modules/transport-companies/entities/transport-company-products.entity';
+import { HotelProduct } from '../../hotels/entities/hotel-products.entity';
+import { Hotel } from '../../hotels/entities/hotels.entity';
+import { TransportCompany } from '../../transport-companies/entities/transport-companies.entity';
+import { TransportCompanyProduct } from '../../transport-companies/entities/transport-company-products.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,

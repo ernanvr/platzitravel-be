@@ -1,5 +1,5 @@
-import { OfferHotelProduct } from 'src/modules/offers/entities/offer-hotel-products.entity';
-import { PromoOfferHotelProduct } from 'src/modules/promo-offers/entities/promo-offer-hotel-products.entity';
+import { OfferHotelProduct } from '../../offers/entities/offer-hotel-products.entity';
+import { PromoOfferHotelProduct } from '../../promo-offers/entities/promo-offer-hotel-products.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -13,7 +13,7 @@ import {
 } from 'typeorm';
 import { Hotel } from './hotels.entity';
 import { RoomType } from './room-types.entity';
-import { Image } from 'src/modules/media/entities/image.entity';
+import { Image } from '../../media/entities/image.entity';
 
 @Entity()
 export class HotelProduct {

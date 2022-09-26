@@ -8,8 +8,8 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { PromoOffer } from 'src/modules/promo-offers/entities/promo-offers.entity';
-import { TransportCompanyProduct } from 'src/modules/transport-companies/entities/transport-company-products.entity';
+import { PromoOffer } from '../../promo-offers/entities/promo-offers.entity';
+import { TransportCompanyProduct } from '../../transport-companies/entities/transport-company-products.entity';
 
 @Entity()
 export class PromoOfferTransportProduct {

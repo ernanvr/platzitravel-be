@@ -7,9 +7,9 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
-import { Offer } from 'src/modules/offers/entities/offers.entity';
-import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
-import { PromoOfferHotelProduct } from 'src/modules/promo-offers/entities/promo-offer-hotel-products.entity';
+import { Offer } from '../../offers/entities/offers.entity';
+import { PromoOfferTransportProduct } from '../../promo-offers/entities/promo-offer-transport-products.entity';
+import { PromoOfferHotelProduct } from '../../promo-offers/entities/promo-offer-hotel-products.entity';
 
 @Entity()
 export class PromoOffer {

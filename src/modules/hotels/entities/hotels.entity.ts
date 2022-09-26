@@ -9,9 +9,9 @@ import {
   OneToMany,
   DeleteDateColumn,
 } from 'typeorm';
-import { City } from 'src/modules/locations/entities/cities.entity';
+import { City } from '../../locations/entities/cities.entity';
 import { HotelProduct } from './hotel-products.entity';
-import { Image } from 'src/modules/media/entities/image.entity';
+import { Image } from '../../media/entities/image.entity';
 
 @Entity()
 export class Hotel {

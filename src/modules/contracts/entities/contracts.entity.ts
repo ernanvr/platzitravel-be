@@ -1,6 +1,6 @@
-import { Offer } from 'src/modules/offers/entities/offers.entity';
-import { Agent } from 'src/modules/users/entities/agents.entity';
-import { Customer } from 'src/modules/users/entities/customer.entity';
+import { Offer } from '../../offers/entities/offers.entity';
+import { Agent } from '../../users/entities/agents.entity';
+import { Customer } from '../../users/entities/customer.entity';
 import {
   Entity,
   Column,

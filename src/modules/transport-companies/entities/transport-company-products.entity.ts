@@ -1,6 +1,6 @@
-import { Image } from 'src/modules/media/entities/image.entity';
-import { Station } from 'src/modules/locations/entities/stations.entity';
-import { PromoOfferTransportProduct } from 'src/modules/promo-offers/entities/promo-offer-transport-products.entity';
+import { Image } from '../../media/entities/image.entity';
+import { Station } from '../../locations/entities/stations.entity';
+import { PromoOfferTransportProduct } from '../../promo-offers/entities/promo-offer-transport-products.entity';
 import {
   Entity,
   Column,

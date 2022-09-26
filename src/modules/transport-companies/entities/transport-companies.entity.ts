@@ -1,5 +1,5 @@
-import { Image } from 'src/modules/media/entities/image.entity';
-import { City } from 'src/modules/locations/entities/cities.entity';
+import { Image } from '../../media/entities/image.entity';
+import { City } from '../../locations/entities/cities.entity';
 import {
   Entity,
   Column,
