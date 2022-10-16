@@ -7,15 +7,19 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
+import { Public } from 'src/modules/auth/decorators/public.decorator';
 import { AgentsService } from '../services/agents.service';
 import { Agent } from '../entities/agents.entity';
 import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
+import { ApiKeyGuard } from '../../auth/guards/api-key.guard';
 
 @ApiTags('Agents')
+@UseGuards(ApiKeyGuard) //protect all endpoints
 @Controller({
   path: 'agents',
   version: '1',
@@ -23,6 +27,7 @@ import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
 export class AgentsController {
   constructor(private agentService: AgentsService) {}
 
+  @Public()
   @Get()
   getAllAgents(): Promise<Agent[]> {
     return this.agentService.findAll();

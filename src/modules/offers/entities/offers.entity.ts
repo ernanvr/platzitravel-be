@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { PromoOffer } from '../../promo-offers/entities/promo-offers.entity';
 import { Agent } from '../../users/entities/agents.entity';
-import { Customer } from '../../users/entities/customer.entity';
+import { Customer } from '../../users/entities/customers.entity';
 import { OfferHotelProduct } from './offer-hotel-products.entity';
 import { OfferTransportProduct } from './offer-transport-products.entity';
 import { Contract } from '../../contracts/entities/contracts.entity';

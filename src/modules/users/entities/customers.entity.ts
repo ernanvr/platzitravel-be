@@ -6,13 +6,24 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { User } from './users.entity';
 
 @Entity()
 export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({
+    type: 'integer',
+    nullable: false,
+    name: 'user_id',
+  })
+  userId: number;
 
   @Column({
     type: 'varchar',
@@ -50,13 +61,6 @@ export class Customer {
   mobile: string;
 
   @Column({
-    type: 'varchar',
-    length: 254,
-    nullable: false,
-  })
-  email: string;
-
-  @Column({
     name: 'text',
     nullable: true,
   })
@@ -72,6 +76,15 @@ export class Customer {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @DeleteDateColumn({
+    name: 'deleted_at',
+  })
+  deletedAt: Date;
+
+  @OneToOne(() => User, (e) => e.customer)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @OneToMany(() => Contract, (contract) => contract.customer, {
     cascade: true,

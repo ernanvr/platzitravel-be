@@ -8,7 +8,10 @@ import {
   UpdateDateColumn,
   OneToMany,
   DeleteDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { User } from './users.entity';
 
 @Entity()
 export class Agent {
@@ -24,14 +27,23 @@ export class Agent {
   agentCode: string;
 
   @Column({
+    type: 'integer',
+    name: 'user_id',
+    nullable: false,
+  })
+  userId: number;
+
+  @Column({
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   firstName: string;
 
   @Column({
     type: 'varchar',
     length: 64,
+    nullable: false,
   })
   lastname: string;
 
@@ -56,6 +68,10 @@ export class Agent {
     name: 'deleted_at',
   })
   deletedAt: Date;
+
+  @OneToOne(() => User, (e) => e.agent)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @OneToMany(() => Contract, (contract) => contract.agent, {
     cascade: true,

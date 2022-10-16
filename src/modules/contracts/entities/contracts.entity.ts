@@ -1,6 +1,6 @@
 import { Offer } from '../../offers/entities/offers.entity';
 import { Agent } from '../../users/entities/agents.entity';
-import { Customer } from '../../users/entities/customer.entity';
+import { Customer } from '../../users/entities/customers.entity';
 import {
   Entity,
   Column,

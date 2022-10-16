@@ -10,7 +10,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
-import { Customer } from '../entities/customer.entity';
+import { Customer } from '../entities/customers.entity';
 import { CustomersService } from 'src/modules/users/services/customers.service';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
 import {

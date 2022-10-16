@@ -14,6 +14,7 @@ import { PromoOffersModule } from './modules/promo-offers/promo-offers.module';
 import { MediaModule } from './modules/media/media.module';
 import config from './config/config';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { typeOrmAsyncConfig } from './config/typeorm.config';
     LocationsModule,
     UsersModule,
     MediaModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

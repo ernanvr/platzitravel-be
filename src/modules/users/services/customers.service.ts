@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Customer } from 'src/modules/users/entities/customer.entity';
+import { Customer } from '../entities/customers.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { CreateCustomerDto, UpdateCustomerDto } from '../dtos/customers.dto';
