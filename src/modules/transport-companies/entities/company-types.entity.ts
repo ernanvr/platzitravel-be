@@ -38,7 +38,8 @@ export class CompanyType {
   deletedAt: Date;
 
   @OneToMany(() => TransportCompany, (e) => e.companyType, {
-    cascade: true,
+    cascade: false,
+    eager: false,
   })
   transportCompanies: TransportCompany;
 }

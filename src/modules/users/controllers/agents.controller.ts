@@ -11,15 +11,15 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
 import { Public } from 'src/modules/auth/decorators/public.decorator';
 import { AgentsService } from '../services/agents.service';
 import { Agent } from '../entities/agents.entity';
 import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
-import { ApiKeyGuard } from '../../auth/guards/api-key.guard';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Agents')
-@UseGuards(ApiKeyGuard) //protect all endpoints
 @Controller({
   path: 'agents',
   version: '1',

@@ -7,7 +7,9 @@ import {
   Delete,
   Param,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -15,6 +17,7 @@ import { CreateRoomType, UpdateRoomType } from '../dtos/room-types.dto';
 import { RoomType } from '../entities/room-types.entity';
 import { RoomTypesService } from '../services/room-types.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Room types')
 @Controller({
   path: 'room-types',

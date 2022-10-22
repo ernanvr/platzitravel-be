@@ -6,6 +6,7 @@ import {
   Post,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
@@ -17,7 +18,9 @@ import {
   CreateCustomerDto,
   UpdateCustomerDto,
 } from 'src/modules/users/dtos/customers.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Customers')
 @Controller({
   path: 'customers',

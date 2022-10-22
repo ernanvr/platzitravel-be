@@ -7,12 +7,15 @@ import {
   Post,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CitiesService } from '../services/cities.service';
 import { CreateCityDto, UpdateCityDto } from '../dtos/cities.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Cities')
 @Controller({
   path: 'cities',

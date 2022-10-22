@@ -7,7 +7,9 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -18,6 +20,7 @@ import {
 import { CompanyType } from '../entities/company-types.entity';
 import { CompanyTypesService } from '../services/company-types.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Company types')
 @Controller({
   path: 'company-types',

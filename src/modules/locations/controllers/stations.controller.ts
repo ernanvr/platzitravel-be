@@ -7,7 +7,9 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -15,6 +17,7 @@ import { CreateStationDto, UpdateStationDto } from '../dtos/stations.dto';
 import { Station } from '../entities/stations.entity';
 import { StationsService } from '../services/stations.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Stations')
 @Controller({
   path: 'stations',

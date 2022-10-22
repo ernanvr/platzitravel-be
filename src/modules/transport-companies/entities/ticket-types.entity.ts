@@ -39,7 +39,8 @@ export class TicketType {
   deletedAt: Date;
 
   @OneToMany(() => TransportCompanyProduct, (e) => e.ticketType, {
-    cascade: true,
+    cascade: false,
+    eager: false,
   })
   transportCompanyProducts: TransportCompanyProduct;
 }

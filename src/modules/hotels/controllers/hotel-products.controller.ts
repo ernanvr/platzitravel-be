@@ -7,7 +7,9 @@ import {
   Post,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 
 import {
@@ -17,6 +19,7 @@ import {
 import { HotelProduct } from '../entities/hotel-products.entity';
 import { HotelProductsService } from '../services/hotel-products.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Hotel products')
 @Controller({
   path: 'hotel-products',

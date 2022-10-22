@@ -8,6 +8,7 @@ import {
   DeleteDateColumn,
   OneToOne,
 } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { Customer } from './customers.entity';
 
 @Entity()
@@ -17,24 +18,19 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 64,
+    length: 255,
     nullable: false,
+    unique: true,
   })
-  username: string;
+  email: string;
 
+  @Exclude()
   @Column({
     type: 'varchar',
     length: 255,
     nullable: false,
   })
   password: string;
-
-  @Column({
-    type: 'varchar',
-    length: 255,
-    nullable: false,
-  })
-  email: string;
 
   @Column({
     type: 'varchar',

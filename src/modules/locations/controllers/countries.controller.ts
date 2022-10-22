@@ -7,12 +7,15 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CountriesService } from '../services/countries.service';
 import { CreateCountryDto, UpdateCountryDto } from '../dtos/countries.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Countries')
 @Controller({
   path: 'countries',

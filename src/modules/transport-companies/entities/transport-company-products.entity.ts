@@ -117,13 +117,15 @@ export class TransportCompanyProduct {
     () => PromoOfferTransportProduct,
     (e) => e.transportCompanyProduct,
     {
-      cascade: true,
+      cascade: false,
+      eager: false,
     },
   )
   promoOfferTransportProducts: PromoOfferTransportProduct[];
 
   @OneToMany(() => Image, (e) => e.transportCompanyProduct, {
-    cascade: true,
+    cascade: false,
+    eager: false,
   })
   images: Image[];
 }

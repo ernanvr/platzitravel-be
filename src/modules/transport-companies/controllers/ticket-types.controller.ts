@@ -7,7 +7,9 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -18,6 +20,7 @@ import {
 import { TicketType } from '../entities/ticket-types.entity';
 import { TicketTypesService } from '../services/ticket-types.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Ticket types')
 @Controller({
   path: 'ticket-types',

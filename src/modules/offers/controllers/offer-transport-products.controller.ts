@@ -7,7 +7,9 @@ import {
   Post,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -18,6 +20,7 @@ import {
 import { OfferTransportProduct } from '../entities/offer-transport-products.entity';
 import { OfferTransportProductsService } from '../services/offer-transport-products.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Offer transport products')
 @Controller({
   path: 'offer-transport-products',

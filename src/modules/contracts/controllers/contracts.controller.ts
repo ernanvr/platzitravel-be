@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Put, UseGuards } from '@nestjs/common';
 import { DeleteResult } from 'typeorm';
 import { CreateContractDto, UpdateContractDto } from '../dtos/contracts.dto';
 import { Contract } from '../entities/contracts.entity';
 import { ContractsService } from '../services/contracts.service';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Contracts')
 @Controller({
   path: 'contracts',

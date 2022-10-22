@@ -7,7 +7,9 @@ import {
   Body,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
 
@@ -15,6 +17,7 @@ import { CreateOfferDto, UpdateOfferDto } from '../dtos/offers.dto';
 import { Offer } from '../entities/offers.entity';
 import { OffersService } from '../services/offers.service';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Offers')
 @Controller({
   path: 'offers',

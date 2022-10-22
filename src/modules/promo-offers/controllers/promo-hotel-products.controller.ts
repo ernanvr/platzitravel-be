@@ -7,6 +7,7 @@ import {
   Post,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PromoHotelProductsService } from '../services/promo-hotel-products.service';
@@ -16,7 +17,9 @@ import {
   UpdatePromoOfferHotelProductDto,
 } from '../dtos/promo-offers-hotel-products.dto';
 import { DeleteResult } from 'typeorm';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Promo offer hotel products')
 @Controller({
   path: 'promo-hotel-products',

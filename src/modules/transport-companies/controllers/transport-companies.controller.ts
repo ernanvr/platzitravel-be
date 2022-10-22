@@ -7,6 +7,7 @@ import {
   Body,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
@@ -17,7 +18,9 @@ import {
 } from '../dtos/transport-companies.dto';
 import { TransportCompaniesService } from '../services/transport-companies.service';
 import { TransportCompany } from '../entities/transport-companies.entity';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Transport companies')
 @Controller({
   path: 'transport-companies',

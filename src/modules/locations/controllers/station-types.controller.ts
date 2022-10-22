@@ -7,6 +7,7 @@ import {
   Param,
   Body,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -18,7 +19,9 @@ import {
   CreateStationTypeDto,
   UpdateStationTypeDto,
 } from '../dtos/station-types.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Station types')
 @Controller({
   path: 'station-types',

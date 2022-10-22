@@ -15,6 +15,10 @@ export default registerAs('config', () => {
       secretKey: process.env.GCLOUD_SECRET_KEY,
       bucket: process.env.GCLOUD_BUCKET,
     },
+    jwt: {
+      secretOrKey: process.env.JWTSECRET,
+      timeExpiring: process.env.JWTIMEXPIRING,
+    },
     port: process.env.PORT,
   };
 });

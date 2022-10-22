@@ -7,6 +7,7 @@ import {
   Delete,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
@@ -17,7 +18,9 @@ import {
   CreateOfferHotelProductDto,
   UpdateOfferHotelProductDto,
 } from '../dtos/offer-hotel-products.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @ApiTags('Offer hotel products')
 @Controller({
   path: 'offer-hotel-products',

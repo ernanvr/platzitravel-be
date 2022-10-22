@@ -100,12 +100,14 @@ export class TransportCompany {
   companyType: CompanyType;
 
   @OneToMany(() => TransportCompanyProduct, (e) => e.transportCompany, {
-    cascade: true,
+    cascade: false,
+    eager: false,
   })
   transportCompanyProducts: TransportCompanyProduct[];
 
   @OneToMany(() => Image, (e) => e.transportCompanyProduct, {
-    cascade: true,
+    cascade: false,
+    eager: false,
   })
   images: Image[];
 }
