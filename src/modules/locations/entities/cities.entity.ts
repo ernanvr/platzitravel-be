@@ -7,9 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Country } from './countries.entity';
-import { Hotel } from '../../hotels/entities/hotels.entity';
-import { TransportCompany } from '../../transport-companies/entities/transport-companies.entity';
-import { Station } from './stations.entity';
+import { Supplier } from '../../suppliers/entities/suppliers.entity';
 
 @Entity()
 export class City {
@@ -38,20 +36,8 @@ export class City {
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @OneToMany(() => Hotel, (hotel) => hotel.city, {
+  @OneToMany(() => Supplier, (e) => e.city, {
     cascade: true,
   })
-  hotels: Hotel[];
-
-  @OneToMany(
-    () => TransportCompany,
-    (transportCompany) => transportCompany.city,
-    { cascade: true },
-  )
-  transportCompanies: TransportCompany[];
-
-  @OneToMany(() => Station, (e) => e.city, {
-    cascade: true,
-  })
-  stations: Station[];
+  suppliers: Supplier[];
 }

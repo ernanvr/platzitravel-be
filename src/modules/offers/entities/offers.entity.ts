@@ -12,8 +12,7 @@ import {
 import { PromoOffer } from '../../promo-offers/entities/promo-offers.entity';
 import { Agent } from '../../users/entities/agents.entity';
 import { Customer } from '../../users/entities/customers.entity';
-import { OfferHotelProduct } from './offer-hotel-products.entity';
-import { OfferTransportProduct } from './offer-transport-products.entity';
+import { OfferSupplierProduct } from './offer-supplier-products.entity';
 import { Contract } from '../../contracts/entities/contracts.entity';
 
 @Entity()
@@ -104,11 +103,8 @@ export class Offer {
   @JoinColumn({ name: 'promo_offer_id' })
   promoOffer: PromoOffer;
 
-  @OneToMany(() => OfferTransportProduct, (e) => e.offer)
-  offerTransportProducts: OfferTransportProduct[];
-
-  @OneToMany(() => OfferHotelProduct, (e) => e.offer)
-  offerHotelProducts: OfferHotelProduct[];
+  @OneToMany(() => OfferSupplierProduct, (e) => e.offer)
+  offerSupplierProducts: OfferSupplierProduct[];
 
   @OneToMany(() => Contract, (e) => e.offer)
   contracts: Contract[];

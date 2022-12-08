@@ -1,7 +1,5 @@
-import { HotelProduct } from '../../hotels/entities/hotel-products.entity';
-import { Hotel } from '../../hotels/entities/hotels.entity';
-import { TransportCompany } from '../../transport-companies/entities/transport-companies.entity';
-import { TransportCompanyProduct } from '../../transport-companies/entities/transport-company-products.entity';
+import { SupplierProduct } from '../../suppliers/entities/supplier-products.entity';
+import { Supplier } from '../../suppliers/entities/suppliers.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -19,32 +17,18 @@ export class Image {
   id: number;
 
   @Column({
-    name: 'hotel_id',
+    name: 'Supplier_id',
     type: 'integer',
     nullable: true,
   })
-  hotelId?: number;
+  supplierId?: number;
 
   @Column({
-    name: 'hotel_product_id',
+    name: 'Supplier_product_id',
     type: 'integer',
     nullable: true,
   })
-  hotelProductId?: number;
-
-  @Column({
-    name: 'transport_company_id',
-    type: 'integer',
-    nullable: true,
-  })
-  transportCompanyId?: number;
-
-  @Column({
-    name: 'transport_company_product_id',
-    type: 'integer',
-    nullable: true,
-  })
-  transportCompanyProductId?: number;
+  supplierProductId?: number;
 
   @Column({
     type: 'varchar',
@@ -77,35 +61,19 @@ export class Image {
   @DeleteDateColumn()
   deleted_at: Date;
 
-  @ManyToOne(() => Hotel, (e) => e.images, {
+  @ManyToOne(() => Supplier, (e) => e.images, {
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
     orphanedRowAction: 'soft-delete',
   })
-  @JoinColumn({ name: 'hotel_id' })
-  hotel: Hotel;
+  @JoinColumn({ name: 'Supplier_id' })
+  supplier: Supplier;
 
-  @ManyToOne(() => HotelProduct, (e) => e.images, {
+  @ManyToOne(() => SupplierProduct, (e) => e.images, {
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
     orphanedRowAction: 'soft-delete',
   })
-  @JoinColumn({ name: 'hotel_product_id' })
-  hotelProduct: HotelProduct;
-
-  @ManyToOne(() => TransportCompany, (e) => e.images, {
-    onDelete: 'RESTRICT',
-    onUpdate: 'CASCADE',
-    orphanedRowAction: 'soft-delete',
-  })
-  @JoinColumn({ name: 'transport_company_id' })
-  transportCompany: TransportCompany;
-
-  @ManyToOne(() => TransportCompanyProduct, (e) => e.images, {
-    onDelete: 'RESTRICT',
-    onUpdate: 'CASCADE',
-    orphanedRowAction: 'soft-delete',
-  })
-  @JoinColumn({ name: 'transport_company_product_id' })
-  transportCompanyProduct: TransportCompanyProduct;
+  @JoinColumn({ name: 'Supplier_product_id' })
+  supplierProduct: SupplierProduct;
 }

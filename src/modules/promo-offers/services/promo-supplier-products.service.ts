@@ -8,18 +8,18 @@ import {
 import { PromoOfferSupplierProduct } from '../entities/promo-offer-supplier-products.entity';
 
 @Injectable()
-export class PromoHotelProductsService {
+export class PromoSupplierProductsService {
   constructor(
     @InjectRepository(PromoOfferSupplierProduct)
-    private promoHotelProductRepository: Repository<PromoOfferSupplierProduct>,
+    private promoSupplierProductRepository: Repository<PromoOfferSupplierProduct>,
   ) {}
 
   findAll(): Promise<PromoOfferSupplierProduct[]> {
-    return this.promoHotelProductRepository.find();
+    return this.promoSupplierProductRepository.find();
   }
 
   async findOne(id: number): Promise<PromoOfferSupplierProduct> {
-    const response = await this.promoHotelProductRepository.findOne({
+    const response = await this.promoSupplierProductRepository.findOne({
       where: { id },
     });
 
@@ -33,8 +33,8 @@ export class PromoHotelProductsService {
   create(
     payload: CreatePromoOfferSupplierProductDto,
   ): Promise<PromoOfferSupplierProduct> {
-    const newPromoOffer = this.promoHotelProductRepository.create(payload);
-    return this.promoHotelProductRepository.save(newPromoOffer);
+    const newPromoOffer = this.promoSupplierProductRepository.create(payload);
+    return this.promoSupplierProductRepository.save(newPromoOffer);
   }
 
   async udpate(
@@ -42,12 +42,12 @@ export class PromoHotelProductsService {
     payload: UpdatePromoOfferSupplierProductDto,
   ): Promise<PromoOfferSupplierProduct> {
     const response = await this.findOne(id);
-    this.promoHotelProductRepository.merge(response, payload);
-    return this.promoHotelProductRepository.save(response);
+    this.promoSupplierProductRepository.merge(response, payload);
+    return this.promoSupplierProductRepository.save(response);
   }
 
   async delete(id: number): Promise<DeleteResult> {
     await this.findOne(id);
-    return this.promoHotelProductRepository.softDelete(id);
+    return this.promoSupplierProductRepository.softDelete(id);
   }
 }

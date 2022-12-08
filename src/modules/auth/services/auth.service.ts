@@ -30,4 +30,15 @@ export class AuthService {
       user,
     };
   }
+
+  async resetPassword(user: any) {
+    //get user object
+    //import mailer service
+    //send email with token
+    //redirect to route with token as parameter
+    //validate token. If it is correct, request a new password
+    //Save new password in database
+    //redirect to login route
+    return user;
+  }
 }

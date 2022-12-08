@@ -11,14 +11,16 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { DeleteResult } from 'typeorm';
-import { AuthGuard } from '@nestjs/passport';
 
 import { Public } from 'src/modules/auth/decorators/public.decorator';
 import { AgentsService } from '../services/agents.service';
 import { Agent } from '../entities/agents.entity';
 import { CreateAgentDto, UpdateAgentDto } from '../dtos/agents.dto';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { Role } from '../../auth/models/role.models';
 
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(JwtAuthGuard)
 @ApiTags('Agents')
 @Controller({
   path: 'agents',
@@ -38,6 +40,7 @@ export class AgentsController {
     return this.agentService.findOne(id);
   }
 
+  @Roles(Role.Agent, Role.Admin)
   @Post()
   create(@Body() payload: CreateAgentDto): Promise<Agent> {
     return this.agentService.create(payload);

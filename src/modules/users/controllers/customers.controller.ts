@@ -13,14 +13,14 @@ import { DeleteResult } from 'typeorm';
 
 import { Customer } from '../entities/customers.entity';
 import { CustomersService } from 'src/modules/users/services/customers.service';
-import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
+import { ParseIntPipe } from '../../../common/pipes/parse-int.pipe';
 import {
   CreateCustomerDto,
   UpdateCustomerDto,
 } from 'src/modules/users/dtos/customers.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
-@UseGuards(AuthGuard('jwt'))
+@UseGuards(JwtAuthGuard)
 @ApiTags('Customers')
 @Controller({
   path: 'customers',

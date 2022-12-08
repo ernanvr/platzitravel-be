@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OfferHotelProductsController } from '../controllers/offer-hotel-products.controller';
+import { OfferSupplierProductsController } from '../controllers/offer-Supplier-products.controller';
 
-describe('OfferHotelProductsController', () => {
-  let controller: OfferHotelProductsController;
+describe('OfferSupplierProductsController', () => {
+  let controller: OfferSupplierProductsController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [OfferHotelProductsController],
+      controllers: [OfferSupplierProductsController],
     }).compile();
 
-    controller = module.get<OfferHotelProductsController>(
-      OfferHotelProductsController,
+    controller = module.get<OfferSupplierProductsController>(
+      OfferSupplierProductsController,
     );
   });
 

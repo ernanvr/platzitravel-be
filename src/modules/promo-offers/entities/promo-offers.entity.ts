@@ -8,8 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { Offer } from '../../offers/entities/offers.entity';
-import { PromoOfferTransportProduct } from '../../promo-offers/entities/promo-offer-transport-products.entity';
-import { PromoOfferHotelProduct } from '../../promo-offers/entities/promo-offer-hotel-products.entity';
+import { PromoOfferSupplierProduct } from '../../promo-offers/entities/promo-offer-supplier-products.entity';
 
 @Entity()
 export class PromoOffer {
@@ -61,13 +60,8 @@ export class PromoOffer {
   })
   offers: Offer[];
 
-  @OneToMany(() => PromoOfferTransportProduct, (e) => e.promoOffer, {
+  @OneToMany(() => PromoOfferSupplierProduct, (e) => e.promoOffer, {
     cascade: true,
   })
-  promoOfferTransportProducts: PromoOfferTransportProduct[];
-
-  @OneToMany(() => PromoOfferHotelProduct, (e) => e.promoOffer, {
-    cascade: true,
-  })
-  promoOfferHotelProducts: PromoOfferHotelProduct[];
+  promoOfferSupplierProducts: PromoOfferSupplierProduct[];
 }
