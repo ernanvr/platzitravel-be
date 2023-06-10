@@ -27,18 +27,11 @@ export class Agent {
   agentCode: string;
 
   @Column({
-    type: 'integer',
-    name: 'user_id',
-    nullable: false,
-  })
-  userId: number;
-
-  @Column({
     type: 'varchar',
     length: 64,
     nullable: false,
   })
-  firstName: string;
+  firstname: string;
 
   @Column({
     type: 'varchar',
@@ -70,16 +63,12 @@ export class Agent {
   deletedAt: Date;
 
   @OneToOne(() => User, (e) => e.agent)
-  @JoinColumn({ name: 'user_id' })
+  @JoinColumn()
   user: User;
 
-  @OneToMany(() => Contract, (contract) => contract.agent, {
-    cascade: true,
-  })
+  @OneToMany(() => Contract, (contract) => contract.agent)
   contracts: Contract[];
 
-  @OneToMany(() => Offer, (e) => e.agent, {
-    cascade: true,
-  })
+  @OneToMany(() => Offer, (e) => e.agent)
   offers: Offer[];
 }

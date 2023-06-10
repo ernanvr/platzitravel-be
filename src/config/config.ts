@@ -19,6 +19,10 @@ export default registerAs('config', () => {
       secretOrKey: process.env.JWTSECRET,
       timeExpiring: process.env.JWTIMEXPIRING,
     },
+    nodemailer: {
+      email: process.env.EMAIL,
+      emailPassword: process.env.EMAIL_PASSWORD,
+    },
     port: process.env.PORT,
   };
 });

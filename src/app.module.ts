@@ -14,6 +14,7 @@ import { MediaModule } from './modules/media/media.module';
 import config from './config/config';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { AuthModule } from './modules/auth/auth.module';
+import { MailModule } from './modules/mail/mail.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { AuthModule } from './modules/auth/auth.module';
     UsersModule,
     MediaModule,
     AuthModule,
+    MailModule,
   ],
 })
 export class AppModule {}

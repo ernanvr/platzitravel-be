@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { User } from '../entities/users.entity';
 import { UsersService } from '../services/users.service';
-import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
+import { UpdateUserDto } from '../dtos/users.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { UseInterceptors } from '@nestjs/common';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
@@ -41,13 +41,6 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.findOne(id);
-  }
-
-  @UseInterceptors(ClassSerializerInterceptor)
-  @Public()
-  @Post()
-  create(@Body() payload: CreateUserDto): Promise<User> {
-    return this.usersService.create(payload);
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
